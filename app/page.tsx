@@ -31,11 +31,71 @@ export default function Home() {
 
   // Best selling products subset
   const bestSellers: Product[] = [
-    { id: 1, code: "1001", name: "Softy Material Polo T-Shirt", category: "Polo", rating: 5, reviewsCount: 120, image: "/images/Softy Material Polo T-Shirt.png" },
-    { id: 2, code: "1002", name: "Sublimation Polo", category: "Polo", rating: 4, reviewsCount: 98, image: "/images/sublimation polo.png" },
-    { id: 3, code: "1003", name: "Dri Fit T-Shirt", category: "Round Neck", rating: 5, reviewsCount: 150, image: "/images/Dri Fit T-Shirt.png" },
-    { id: 4, code: "1011", name: "Dot Knit Polo", category: "Polo", rating: 4, reviewsCount: 87, image: "/images/dot knit polo2.png" },
-    { id: 5, code: "1015", name: "Cotton Pique Polo", category: "Polo", rating: 5, reviewsCount: 132, image: "/images/cotton pique polo.png" },
+    {
+      id: 1,
+      code: "1001",
+      name: "Softy Material Polo T-Shirt",
+      category: "Polo",
+      fabric: "Softy Material",
+      gsm: "180 - 200 GSM",
+      sizes: ["S", "M", "L", "XL"],
+      rating: 5,
+      reviewsCount: 120,
+      imageUrl: "/images/Softy Material Polo T-Shirt.png",
+      description: "Premium softy polo shirt with comfortable stretch and a polished finish."
+    },
+    {
+      id: 2,
+      code: "1002",
+      name: "Sublimation Polo",
+      category: "Polo",
+      fabric: "Polyester Sublimation",
+      gsm: "180 - 200 GSM",
+      sizes: ["S", "M", "L", "XL"],
+      rating: 4,
+      reviewsCount: 98,
+      imageUrl: "/images/sublimation polo.png",
+      description: "High-quality sublimation polo ideal for vibrant prints and team uniforms."
+    },
+    {
+      id: 3,
+      code: "1003",
+      name: "Dri Fit T-Shirt",
+      category: "Round Neck",
+      fabric: "Dry Fit",
+      gsm: "160 - 180 GSM",
+      sizes: ["S", "M", "L", "XL"],
+      rating: 5,
+      reviewsCount: 150,
+      imageUrl: "/images/Dri Fit T-Shirt.png",
+      description: "Lightweight dri-fit tee engineered for breathability and active comfort."
+    },
+    {
+      id: 4,
+      code: "1011",
+      name: "Dot Knit Polo",
+      category: "Polo",
+      fabric: "Dot Knit",
+      gsm: "170 - 190 GSM",
+      sizes: ["S", "M", "L", "XL"],
+      rating: 4,
+      reviewsCount: 87,
+      imageUrl: "/images/dot knit polo2.png",
+      description: "Textured dot knit polo offering durable structure and premium feel."
+    },
+    {
+      id: 5,
+      code: "1015",
+      name: "Cotton Pique Polo",
+      category: "Polo",
+      fabric: "Cotton Pique",
+      gsm: "180 - 200 GSM",
+      sizes: ["S", "M", "L", "XL"],
+      rating: 5,
+      reviewsCount: 132,
+      imageUrl: "/images/cotton pique polo.png",
+      description: "Classic cotton pique polo with soft handfeel and strong collar retention."
+    },
   ];
 
   const clientLogos = [
@@ -305,7 +365,7 @@ export default function Home() {
                 {/* Image box */}
                 <div className="h-44 bg-zinc-50 rounded-xs flex items-center justify-center relative overflow-hidden">
                   <Image
-                    src={seller.image}
+                    src={seller.imageUrl}
                     alt={seller.name}
                     width={140}
                     height={140}

@@ -17,15 +17,11 @@ export const Footer: React.FC = () => {
         {/* Col 1: About Firm */}
         <div className="lg:col-span-1.5 flex flex-col gap-5">
          {/* Brand Logo */}
-<Link
-  href="/"
-  onClick={() => setIsOpen(false)}
-  className="flex items-center cursor-pointer"
->
+<Link href="/" className="flex items-center cursor-pointer">
   <Image
-    src="/images/footer-logo-1.png" // ✅ updated logo path
+    src="/images/footer-logo-1.png"
     alt="Krishna International Logo"
-    width={120} // ✅ logo size
+    width={120}
     height={70}
     className="object-contain"
     priority
