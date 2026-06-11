@@ -1,0 +1,6 @@
+{
+  "name": "Krishna International",
+  "description": "Premium T-shirt manufacturing company in India, offering custom apparel, corporate uniforms, Polo T-shirts, and sportswear.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
