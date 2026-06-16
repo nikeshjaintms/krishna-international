@@ -283,7 +283,7 @@ export default function About() {
                     {flow.title}
                   </h3>
                   <p className="text-zinc-500 text-[10px] sm:text-[11px] leading-relaxed">
-                    {flow.description}
+                    {flow.desc}
                   </p>
                 </div>
               </div>
