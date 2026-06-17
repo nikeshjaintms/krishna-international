@@ -325,7 +325,7 @@ export const Footer: React.FC = () => {
       {/* Bottom Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-zinc-800 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
         <p className="text-gray-500 text-sm">
-          © 2024 Krishna International. All Rights Reserved.
+          © {new Date().getFullYear()} Krishna International. All Rights Reserved.
         </p>
 
         <div className="flex flex-wrap justify-center gap-3 text-sm text-gray-500">
