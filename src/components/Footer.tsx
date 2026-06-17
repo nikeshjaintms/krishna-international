@@ -325,7 +325,15 @@ export const Footer: React.FC = () => {
       {/* Bottom Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-zinc-800 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
         <p className="text-gray-500 text-sm">
-          © {new Date().getFullYear()} Krishna International. All Rights Reserved.
+          © {new Date().getFullYear()} Krishna International. All Rights Reserved. Designed & Developed by{" "}
+            <a
+              href="https://techomaxsolution.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-white hover:text-yellow-500 transition-colors"
+            >
+              Techomax Solution
+            </a>
         </p>
 
         <div className="flex flex-wrap justify-center gap-3 text-sm text-gray-500">
