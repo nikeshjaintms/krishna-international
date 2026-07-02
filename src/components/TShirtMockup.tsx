@@ -1,229 +1,135 @@
-import React from "react";
+import React, { useState, useRef } from "react";
+import Image from "next/image";
 
 interface TShirtMockupProps {
-  style?: "polo" | "round" | "sports" | "sublimation";
-  mainColor?: string;
-  collarColor?: string;
+  style: "polo" | "round" | "sports";
+  mainColor: string;
   sleeveColor?: string;
+  collarColor?: string;
   stripeColor?: string;
   hasLogo?: boolean;
+  customLogo?: string | null;
   className?: string;
   showDetailsLabel?: boolean;
 }
 
 export const TShirtMockup: React.FC<TShirtMockupProps> = ({
-  style = "polo",
-  mainColor = "#C20000", // Default Krishna International brand red
-  collarColor,
-  sleeveColor,
-  stripeColor,
-  hasLogo = true,
+  style,
+  mainColor,
+  hasLogo = false,
+  customLogo = null,
   className = "w-full h-full",
   showDetailsLabel = false,
 }) => {
-  const collColor = collarColor || mainColor;
-  const slvColor = sleeveColor || mainColor;
+  // Use our perfectly cut-out realistic generated PNGs!
+  // Note: we use v4/v6 to bypass previous browser caches
+  let baseImage = "/images/polo-mockup-v4.png"; 
+  
+  if (style === "round") {
+    baseImage = "/images/round-mockup-v4.png";
+  } else if (style === "sports") {
+    baseImage = "/images/sports-mockup-v6.png";
+  }
 
-  // Let's craft highly sophisticated vectors of polo and crew neck t-shirts with folds, lights and shading.
+  // Draggable Logo State
+  const [logoPos, setLogoPos] = useState({ x: 68, y: 30 }); // Default percentage position
+  const [isDragging, setIsDragging] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const handlePointerDown = (e: React.PointerEvent) => {
+    e.preventDefault();
+    setIsDragging(true);
+    // Capture pointer to allow dragging outside the logo box smoothly
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+
+  const handlePointerMove = (e: React.PointerEvent) => {
+    if (!isDragging || !containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    
+    // Clamp to prevent dragging way outside
+    const clampedX = Math.max(10, Math.min(90, x));
+    const clampedY = Math.max(10, Math.min(90, y));
+    
+    setLogoPos({ x: clampedX, y: clampedY });
+  };
+
+  const handlePointerUp = (e: React.PointerEvent) => {
+    setIsDragging(false);
+    e.currentTarget.releasePointerCapture(e.pointerId);
+  };
+
   return (
-    <div className={`relative flex items-center justify-center ${className}`}>
-      <svg
-        viewBox="0 0 400 400"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-full max-h-[320px] filter drop-shadow-md hover:scale-105 transition-transform duration-300"
+    <div 
+      ref={containerRef}
+      className={`relative flex items-center justify-center overflow-hidden ${className}`}
+    >
+      
+      {/* 1. Base color layer clipped exactly to the t-shirt silhouette */}
+      <div 
+        className="absolute inset-0 z-0 transition-colors duration-500"
+        style={{
+          backgroundColor: mainColor,
+          WebkitMaskImage: `url('${baseImage}')`,
+          WebkitMaskSize: "contain",
+          WebkitMaskRepeat: "no-repeat",
+          WebkitMaskPosition: "center",
+          maskImage: `url('${baseImage}')`,
+          maskSize: "contain",
+          maskRepeat: "no-repeat",
+          maskPosition: "center",
+        }}
+      />
+
+      {/* 2. Realistic folds, shadows, and texture overlay */}
+      <div 
+        className="absolute inset-0 z-10 pointer-events-none mix-blend-multiply opacity-100 transition-all"
+        style={{ filter: "grayscale(100%) contrast(1.05) brightness(1.02)" }}
       >
-        <defs>
-          {/* Folds and Shading Overlays */}
-          <linearGradient id="shading" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#000000" stopOpacity="0.12" />
-            <stop offset="25%" stopColor="#ffffff" stopOpacity="0.08" />
-            <stop offset="50%" stopColor="#000000" stopOpacity="0" />
-            <stop offset="75%" stopColor="#ffffff" stopOpacity="0.05" />
-            <stop offset="100%" stopColor="#000000" stopOpacity="0.18" />
-          </linearGradient>
+        <img 
+          src={baseImage} 
+          alt="Realistic T-Shirt Mockup" 
+          className="w-full h-full object-contain pointer-events-none select-none"
+          draggable="false"
+        />
+      </div>
 
-          {/* Highlights to give 3D fabric feel */}
-          <radialGradient id="fabric-depth" cx="50%" cy="40%" r="60%">
-            <stop offset="0%" stopColor="#ffffff" stopOpacity="0.12" />
-            <stop offset="60%" stopColor="#000000" stopOpacity="0" />
-            <stop offset="100%" stopColor="#000000" stopOpacity="0.25" />
-          </radialGradient>
-          
-          <linearGradient id="fold-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#ffffff" stopOpacity="0.2" />
-            <stop offset="20%" stopColor="#000000" stopOpacity="0.1" />
-            <stop offset="80%" stopColor="#ffffff" stopOpacity="0.0" />
-            <stop offset="100%" stopColor="#000000" stopOpacity="0.3" />
-          </linearGradient>
-        </defs>
+      {/* 3. Uploaded Custom Logo or Default Brand Logo - Draggable */}
+      {hasLogo && (
+        <div 
+          className="absolute z-20 w-10 h-10 drop-shadow-md transition-shadow duration-300 flex items-center justify-center cursor-move"
+          style={{
+            top: `${logoPos.y}%`,
+            left: `${logoPos.x}%`,
+            transform: "translate(-50%, -50%)",
+            boxShadow: isDragging ? "0 0 15px rgba(255,255,255,0.4)" : "none",
+            borderRadius: "4px"
+          }}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerUp}
+        >
+           {customLogo ? (
+             <img src={customLogo} alt="Custom Logo" className="max-w-full max-h-full object-contain drop-shadow-md pointer-events-none select-none" draggable="false" />
+           ) : (
+             <svg viewBox="0 0 100 100" className="w-6 h-6 opacity-90 transform hover:scale-110 pointer-events-none select-none">
+               {/* White Base */}
+               <path d="M 20 20 L 40 20 L 40 80 L 20 80 Z" fill="#ffffff" />
+               <path d="M 40 50 L 70 20 L 90 20 L 60 50 L 90 80 L 70 80 L 40 50 Z" fill="#ffffff" />
+               {/* Red Inner */}
+               <path d="M 25 25 L 35 25 L 35 75 L 25 75 Z" fill="#C20000" />
+               <path d="M 35 50 L 60 25 L 75 25 L 50 50 L 75 75 L 60 75 L 35 50 Z" fill="#C20000" />
+             </svg>
+           )}
+        </div>
+      )}
 
-        {/* T-Shirt Body Base clipping path or contour */}
-        <g id="tshirt-group">
-          {/* 1. Sleeves Left & Right */}
-          {/* Left Sleeve */}
-          <path
-            d="M 120 120 L 50 140 L 70 185 L 115 170 Z"
-            fill={slvColor}
-            stroke="#000000"
-            strokeOpacity="0.12"
-            strokeWidth="1"
-          />
-          {/* Left Sleeve Cuff */}
-          <path
-            d="M 50 140 L 70 185 L 67 190 L 45 145 Z"
-            fill={collColor}
-            opacity="0.95"
-          />
-
-          {/* Right Sleeve */}
-          <path
-            d="M 280 120 L 350 140 L 330 185 L 285 170 Z"
-            fill={slvColor}
-            stroke="#000000"
-            strokeOpacity="0.12"
-            strokeWidth="1"
-          />
-          {/* Right Sleeve Cuff */}
-          <path
-            d="M 350 140 L 330 185 L 333 190 L 355 145 Z"
-            fill={collColor}
-            opacity="0.95"
-          />
-
-          {/* 2. Main Body Contour */}
-          <path
-            d="M 120 120 C 140 125 260 125 280 120 C 285 170 290 320 285 365 C 240 370 160 370 115 365 C 110 320 115 170 120 120 Z"
-            fill={mainColor}
-            stroke="#000000"
-            strokeOpacity="0.1"
-            strokeWidth="1"
-          />
-
-          {/* Sublimation / Sports Style Stripe Overlay */}
-          {(style === "sports" || style === "sublimation") && (
-            <g opacity="0.85">
-              {/* Dynamic Jersey Details */}
-              <path
-                d="M 150 124 L 170 367 L 195 368 L 175 125 Z"
-                fill={stripeColor || "#ffffff"}
-                opacity="0.9"
-              />
-              <path
-                d="M 225 125 L 205 368 L 230 367 L 250 124 Z"
-                fill={stripeColor || "#ffffff"}
-                opacity="0.9"
-              />
-              <path
-                d="M 50 140 L 120 120 L 115 145 L 60 160 Z"
-                fill={stripeColor || "#ffffff"}
-                opacity="0.4"
-              />
-              <path
-                d="M 350 140 L 280 120 L 285 145 L 340 160 Z"
-                fill={stripeColor || "#ffffff"}
-                opacity="0.4"
-              />
-            </g>
-          )}
-
-          {/* 3D Dynamic Fabric Shading Overlay (Combined Blend Grid) */}
-          <path
-            d="M 120 120 C 140 125 260 125 280 120 C 285 170 290 320 285 365 C 240 370 160 370 115 365 C 110 320 115 170 120 120 Z"
-            fill="url(#shading)"
-            style={{ mixBlendMode: "multiply" }}
-          />
-          <path
-            d="M 120 120 C 140 125 260 125 280 120 C 285 170 290 320 285 365 C 240 370 160 370 115 365 C 110 320 115 170 120 120 Z"
-            fill="url(#fabric-depth)"
-            style={{ mixBlendMode: "overlay" }}
-          />
-          <path
-            d="M 120 120 C 140 125 260 125 280 120 C 285 170 290 320 285 365 C 240 370 160 370 115 365 C 110 320 115 170 120 120 Z"
-            fill="url(#fold-grad)"
-            style={{ mixBlendMode: "overlay" }}
-            opacity="0.8"
-          />
-
-          {/* 3. Collar Style */}
-          {style === "polo" ? (
-            // Polo Rib Collar
-            <g id="polo-collar">
-              {/* Left Wing Collar */}
-              <path
-                d="M 200 125 L 140 120 C 135 125 150 160 170 180 Z"
-                fill={collColor}
-                stroke="#000000"
-                strokeOpacity="0.15"
-                strokeWidth="1.5"
-              />
-              {/* Right Wing Collar */}
-              <path
-                d="M 200 125 L 260 120 C 265 125 250 160 230 180 Z"
-                fill={collColor}
-                stroke="#000000"
-                strokeOpacity="0.15"
-                strokeWidth="1.5"
-              />
-              {/* Inner Collar Back */}
-              <path
-                d="M 140 120 C 160 108 240 108 260 120 C 240 128 160 128 140 120 Z"
-                fill="#222222"
-              />
-              {/* Polo Button Placket */}
-              <path
-                d="M 194 135 L 206 135 L 206 195 L 194 195 Z"
-                fill={collColor}
-                stroke="#000000"
-                strokeOpacity="0.18"
-                strokeWidth="1"
-              />
-              {/* Buttons */}
-              <circle cx="200" cy="148" r="2.5" fill="#ffffff" stroke="#bbbbbb" strokeWidth="0.5" />
-              <circle cx="200" cy="165" r="2.5" fill="#ffffff" stroke="#bbbbbb" strokeWidth="0.5" />
-              <circle cx="200" cy="182" r="2.5" fill="#ffffff" stroke="#bbbbbb" strokeWidth="0.5" />
-            </g>
-          ) : (
-            // Round Neck / Crew Rib
-            <g id="round-collar">
-              <path
-                d="M 155 122 C 170 135 230 135 245 122 C 242 115 158 115 155 122 Z"
-                fill={collColor}
-                stroke="#000000"
-                strokeOpacity="0.15"
-              />
-              {/* Inner Neck Shadow */}
-              <path
-                d="M 157 121 C 170 128 230 128 243 121 C 240 118 160 118 157 121 Z"
-                fill="#151515"
-              />
-            </g>
-          )}
-
-          {/* 4. Brand Accent Logo "K" (Customizable positioning top left) */}
-          {hasLogo && (
-            <g id="krishna-logo" transform="translate(150, 150)">
-              {/* Round white or translucent badge under the logo */}
-              <circle cx="2" cy="2" r="10" fill="#000000" opacity="0.15" />
-              {/* Red/White premium brand K symbol */}
-              <path
-                d="M -3 -6 L -1 -6 L -1 6 L -3 6 Z"
-                fill="#ffffff"
-              />
-              <path
-                d="M -1 -1 L 3 -6 L 5 -6 L 1 -1 L 5 6 L 3 6 L -1 1 Z"
-                fill="#ffffff"
-              />
-              {/* Golden tiny star above K badge */}
-              <polygon points="5,-9 6,-7 8,-7 6.5,-5.5 7,-3.5 5,-5 3,-3.5 3.5,-5.5 2,-7 4,-7" fill="#FBBF24" scale="0.5" />
-            </g>
-          )}
-        </g>
-      </svg>
-
-      {/* Decorative details tag overlays for custom mockup display purposes */}
+      {/* Decorative details tag */}
       {showDetailsLabel && (
-        <div className="absolute top-2 right-2 bg-black/60 backdrop-blur-xs text-[10px] text-white px-2 py-0.5 rounded-full font-mono uppercase tracking-wider">
+        <div className="absolute top-2 right-2 z-30 bg-black/60 backdrop-blur-xs text-[10px] text-white px-2 py-0.5 rounded-full font-mono uppercase tracking-wider shadow-lg">
           {style} Series
         </div>
       )}

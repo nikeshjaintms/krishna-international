@@ -53,14 +53,24 @@ export const Navbar: React.FC = () => {
       <Link
         href="/"
         onClick={() => setIsOpen(false)}
-        className="flex-shrink-0"
+        className="flex-shrink-0 relative flex items-center h-16 md:h-20 w-36 md:w-48"
       >
+        <Image
+          src="/images/footer-logo-1.png"
+          alt="Krishna International Logo"
+          fill
+          className={`object-contain object-left scale-[1.15] md:scale-[1.2] transition-opacity duration-300 ${
+            scrolled ? "opacity-0" : "opacity-100"
+          }`}
+          priority
+        />
         <Image
           src="/images/logo.png"
           alt="Krishna International Logo"
-          width={120}
-          height={50}
-          className="w-20 sm:w-24 md:w-28 lg:w-32 h-auto"
+          fill
+          className={`object-contain object-left scale-[1.15] md:scale-[1.2] transition-opacity duration-300 ${
+            scrolled ? "opacity-100" : "opacity-0"
+          }`}
           priority
         />
       </Link>

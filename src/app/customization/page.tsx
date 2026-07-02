@@ -11,8 +11,10 @@ export default function Customization() {
   const router = useRouter();
   const { openInquiry } = useInquiry();
   // Playground interactive color state
-  const [activePlaygroundColor, setActivePlaygroundColor] = useState<string>("#C20000");
+  const [activePlaygroundColor, setActivePlaygroundColor] = useState<string>("#111827"); // Default black
+  const [activePlaygroundSleeveColor, setActivePlaygroundSleeveColor] = useState<string>("#C20000"); // Default red sleeves/collar
   const [activePlaygroundStyle, setActivePlaygroundStyle] = useState<"polo" | "round" | "sports">("polo");
+  const [uploadedLogo, setUploadedLogo] = useState<string | null>(null);
   const [selectedTechIndex, setSelectedTechIndex] = useState<number | null>(null);
 
   const swatches = [
@@ -90,7 +92,7 @@ export default function Customization() {
               features: [
                 "Up to 15 thread colours per design",
                 "Minimum order: 50 pieces",
-                "Suitable for polo shirts, caps & jackets",
+                "Suitable for polo t-shirts & shirts",
                 "Durable — survives 50+ commercial washes",
                 "3D puff embroidery available on request"
               ]
@@ -152,7 +154,11 @@ export default function Customization() {
               ]
             }
           ].map((opt, idx) => (
-            <div key={idx} className="bg-white border border-gray-100 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all group flex flex-col cursor-pointer">
+            <div 
+              key={idx} 
+              onClick={() => setLearnMoreOption(opt as any)}
+              className="bg-white border border-gray-100 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all group flex flex-col cursor-pointer"
+            >
               <div className="relative h-48 bg-zinc-100 flex items-center justify-center">
                 <Image src={opt.img} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw" alt={opt.title} className="object-cover group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md border border-gray-100 z-10">
@@ -252,7 +258,7 @@ export default function Customization() {
                       style={{ backgroundColor: sw.hex }}
                       className={`w-5 h-5 rounded-full border cursor-pointer transform transition-all hover:scale-110 ${
                         activePlaygroundColor === sw.hex
-                          ? "border-white ring-2 ring-red-600Scale"
+                          ? "border-white ring-2 ring-red-600 shadow-[0_0_8px_rgba(255,255,255,0.5)]"
                           : "border-zinc-800"
                       }`}
                       title={sw.name}
@@ -260,47 +266,53 @@ export default function Customization() {
                   ))}
                 </div>
               </div>
+
+              <div className="space-y-2 pt-2">
+                <p className="text-[9px] text-zinc-500 uppercase font-mono font-bold">3. Upload Custom Logo</p>
+                <div className="flex items-center gap-3">
+                  <label className="cursor-pointer bg-zinc-800 hover:bg-zinc-700 text-xs text-white px-3 py-1.5 rounded border border-zinc-700 transition-colors">
+                    Choose Image
+                    <input 
+                      type="file" 
+                      accept="image/*" 
+                      className="hidden" 
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) {
+                          setUploadedLogo(URL.createObjectURL(file));
+                        }
+                      }}
+                    />
+                  </label>
+                  {uploadedLogo && (
+                    <button 
+                      onClick={() => setUploadedLogo(null)}
+                      className="text-[10px] text-red-500 hover:text-red-400 font-medium"
+                    >
+                      Remove
+                    </button>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Middle/Right: Mockup annotations overlay mimicking CAD specs perfectly */}
           <div className="lg:col-span-8 flex flex-col md:flex-row items-center justify-center gap-10">
             {/* Interactive rendering with visual pointers */}
-            <div className="relative w-full max-w-[320px] bg-zinc-900/40 p-6 rounded-lg border border-zinc-900 shadow-2xl flex items-center justify-center">
+            <div className="relative w-full max-w-[340px] bg-zinc-100 p-8 rounded-2xl shadow-[0_0_40px_rgba(255,255,255,0.05)] flex items-center justify-center">
               
-              <TShirtMockup
-                style={activePlaygroundStyle}
-                mainColor={activePlaygroundColor}
-                stripeColor="#FCD34D"
-                hasLogo={true}
-                className="w-full h-full min-h-[280px]"
-              />
-
-              {/* Annotation labels exact reproduction */}
-              {/* Point 1: Premium fabric */}
-              <div className="absolute top-12 left-2 text-right">
-                <p className="text-[9px] font-black uppercase tracking-widest text-[#ff4c4c]">Premium Fabric</p>
-                <p className="text-[8px] text-zinc-400 font-mono mt-0.5">High thread count double combed</p>
-              </div>
-              <div className="absolute top-16 left-24 w-4 h-[1px] bg-[#ff4c4c]/40" />
-
-              {/* Point 2: Custom printing */}
-              <div className="absolute bottom-16 -right-2 text-left">
-                <p className="text-[9px] font-black uppercase tracking-widest text-[#ff4c4c]">Custom Printing</p>
-                <p className="text-[8px] text-zinc-400 font-mono mt-0.5">Screen, Embroidery or Sublimation</p>
-              </div>
-              <div className="absolute bottom-20 right-24 w-4 h-[1px] bg-[#ff4c4c]/40" />
-
-              {/* Point 3: Perfect Fit */}
-              <div className="absolute bottom-10 left-2 text-right">
-                <p className="text-[9px] font-black uppercase tracking-widest text-[#ff4c4c]">Perfect Fit</p>
-                <p className="text-[8px] text-zinc-400 font-mono mt-0.5">Sizes ranging from XS to 3XL</p>
-              </div>
-
-              {/* Point 4: Left Crest Logo */}
-              <div className="absolute top-22 -right-4 text-left">
-                <p className="text-[9px] font-black uppercase tracking-widest text-[#ff4c4c]">YOUR LOGO</p>
-                <p className="text-[8px] text-zinc-400 font-mono mt-0.5">Computer embroidery or heat-seal badge</p>
+              {/* Foreground Mockup */}
+              <div className="relative z-10 w-full drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)] transition-all duration-500">
+                <TShirtMockup
+                  style={activePlaygroundStyle}
+                  mainColor={activePlaygroundColor}
+                  sleeveColor={activePlaygroundSleeveColor}
+                  collarColor={activePlaygroundSleeveColor}
+                  stripeColor="#FCD34D"
+                  hasLogo={true}
+                  customLogo={uploadedLogo}
+                  className="w-full h-full min-h-[300px]"
+                />
               </div>
             </div>
 

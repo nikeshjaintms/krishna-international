@@ -7,7 +7,7 @@ import {
   ArrowRight, Layers, Users, Award, Truck,
   ShieldCheck, Sparkles, Cpu, UserCheck,
   CalendarClock, Coins, MessageSquare,
-  ChevronRight, Star, Package, Zap, CheckCircle2,
+  ChevronRight, ChevronLeft, Star, Package, Zap, CheckCircle2,
 } from "lucide-react";
 import { statsList, whyChooseUs } from "@/data/mockData";
 import { Product } from "@/types";
@@ -35,40 +35,52 @@ export default function Home() {
   const router = useRouter();
   const { openInquiry } = useInquiry();
 
+  const sliderRef = useRef<HTMLDivElement>(null);
+  
+  const scrollSlider = (dir: "left" | "right") => {
+    if (sliderRef.current) {
+      const scrollAmount = sliderRef.current.clientWidth * 0.8;
+      sliderRef.current.scrollBy({ left: dir === "left" ? -scrollAmount : scrollAmount, behavior: "smooth" });
+    }
+  };
+
   const nav = (path: string) => { router.push(path); window.scrollTo({ top: 0, behavior: "smooth" }); };
 
   /* ── data ── */
   const collections = [
-    { name: "Polo T-Shirts",      img: "/images/tshirt-1.png" },
-    { name: "Sportswear",         img: "/images/tshirt-2.png" },
-    { name: "Cotton Wear",        img: "/images/tshirt-3.png" },
-    { name: "Sublimation",        img: "/images/tshirt-4.png" },
-    { name: "Corporate Uniforms", img: "/images/tshirt-5.png" },
+    { name: "Polo T-Shirt", img: "/images/tshirt-1.png" },
+    { name: "Sportswear", img: "/images/tshirt-2.png" },
+    { name: "Cotton Wear", img: "/images/tshirt-3.png" },
+    { name: "Sublimation", img: "/images/tshirt-4.png" },
+    { name: "Corporate Uniform", img: "/images/tshirt-5.png" },
   ];
 
   const bestSellers = [
-    { id: "1", code: "1001", name: "Softy Material Polo",   category: "Polo",       rating: 5, reviews: 120, img: "/images/Softy-Material-Polo-T-Shirt.png" },
-    { id: "2", code: "1002", name: "Sublimation Polo",      category: "Polo",       rating: 4, reviews: 98,  img: "/images/sublimation polo.png" },
-    { id: "3", code: "1003", name: "Dri Fit T-Shirt",       category: "Round Neck", rating: 5, reviews: 150, img: "/images/Dri-Fit-T-Shirt.png" },
-    { id: "4", code: "1011", name: "Dot Knit Polo",         category: "Polo",       rating: 4, reviews: 87,  img: "/images/Dot-Knit-Polo.jpg" },
-    { id: "5", code: "1015", name: "Cotton Pique Polo",     category: "Polo",       rating: 5, reviews: 132, img: "/images/cotton pique polo.png" },
+    { id: "1", code: "1001", name: "Softy Material Polo", category: "Polo", rating: 5, reviews: 120, img: "/images/Softy-Material-Polo-T-Shirt.png" },
+    { id: "2", code: "1002", name: "Sublimation Polo", category: "Polo", rating: 4, reviews: 98, img: "/images/sublimation polo.png" },
+    { id: "3", code: "1003", name: "Dri Fit T-Shirt", category: "Round Neck", rating: 5, reviews: 150, img: "/images/Dri-Fit-T-Shirt.png" },
+    { id: "4", code: "1011", name: "Dot Knit Polo", category: "Polo", rating: 4, reviews: 87, img: "/images/Dot-Knit-Polo.jpg" },
+    { id: "5", code: "1015", name: "Cotton Pique Polo", category: "Polo", rating: 5, reviews: 132, img: "/images/cotton pique polo.png" },
+    { id: "6", code: "3001", name: "Corporate Uniform", category: "Corporate", rating: 5, reviews: 105, img: "/images/Corporate-Uniform.png" },
+    { id: "7", code: "1004", name: "Rise Knit Round Neck", category: "Round Neck", rating: 4, reviews: 76, img: "/images/Rise Knit Round Neck.jpg" },
+    { id: "8", code: "2001", name: "Dry Fit Polo", category: "Polo", rating: 5, reviews: 140, img: "/images/Dry-Fit-Polo.jpg" },
   ];
 
   const processSteps = [
     { num: "01", title: "Share Requirement", desc: "Tell us your design, quantity & fabric preference.", icon: <MessageSquare size={20} /> },
-    { num: "02", title: "Design & Mockup",   desc: "Digital artists craft accurate mockups for approval.",  icon: <Sparkles size={20} /> },
-    { num: "03", title: "Sample Production", desc: "Physical sample garment prepared for inspection.",      icon: <Package size={20} /> },
-    { num: "04", title: "Bulk Production",   desc: "State-of-the-art cutting, sewing & line audits.",       icon: <Zap size={20} /> },
-    { num: "05", title: "Delivery",          desc: "Packed securely & dispatched PAN India on time.",       icon: <Truck size={20} /> },
+    { num: "02", title: "Design & Mockup", desc: "Digital artists craft accurate mockups for approval.", icon: <Sparkles size={20} /> },
+    { num: "03", title: "Sample Production", desc: "Physical sample garment prepared for inspection.", icon: <Package size={20} /> },
+    { num: "04", title: "Bulk Production", desc: "State-of-the-art cutting, sewing & line audits.", icon: <Zap size={20} /> },
+    { num: "05", title: "Delivery", desc: "Packed securely & dispatched PAN India on time.", icon: <Truck size={20} /> },
   ];
 
   const clientLogos = [
-    { name: "DECATHLON",      cls: "font-black italic text-blue-700 text-base sm:text-lg" },
-    { name: "RELIANCE",       cls: "font-extrabold text-red-700 tracking-wider" },
-    { name: "KALOREX",        cls: "font-mono font-bold tracking-widest text-[#C20000]" },
-    { name: "NAVYY",          cls: "font-medium tracking-widest text-zinc-900" },
-    { name: "SAMARPAN",       cls: "font-serif uppercase text-amber-800 tracking-widest text-sm" },
-    { name: "MANGALAM",       cls: "font-semibold tracking-wide text-zinc-700" },
+    { name: "DECATHLON", cls: "font-black italic text-blue-700 text-base sm:text-lg" },
+    { name: "RELIANCE", cls: "font-extrabold text-red-700 tracking-wider" },
+    { name: "KALOREX", cls: "font-mono font-bold tracking-widest text-[#C20000]" },
+    { name: "NAVYY", cls: "font-medium tracking-widest text-zinc-900" },
+    { name: "SAMARPAN", cls: "font-serif uppercase text-amber-800 tracking-widest text-sm" },
+    { name: "MANGALAM", cls: "font-semibold tracking-wide text-zinc-700" },
     { name: "AVERY DENNISON", cls: "font-black text-zinc-800 text-xs tracking-tight" },
   ];
 
@@ -76,9 +88,9 @@ export default function Home() {
     const cls = "text-white";
     const sz = 18;
     if (name === "Layers") return <Layers size={sz} className={cls} />;
-    if (name === "Users")  return <Users  size={sz} className={cls} />;
-    if (name === "Award")  return <Award  size={sz} className={cls} />;
-    if (name === "Truck")  return <Truck  size={sz} className={cls} />;
+    if (name === "Users") return <Users size={sz} className={cls} />;
+    if (name === "Award") return <Award size={sz} className={cls} />;
+    if (name === "Truck") return <Truck size={sz} className={cls} />;
     return <Layers size={sz} className={cls} />;
   };
 
@@ -106,13 +118,13 @@ export default function Home() {
       <section className="relative w-full bg-zinc-950 min-h-[580px] sm:min-h-[640px] flex flex-col justify-center overflow-hidden">
         {/* BG image */}
         <div className="absolute inset-0">
-          <Image src="/images/home-bg.png" fill priority sizes="100vw"
+          <Image src="/images/home-bg1.png" fill priority sizes="100vw"
             alt="Krishna International factory floor"
-            className="object-cover object-center brightness-[0.55]" />
+            className="object-cover object-center brightness-[0.85]" />
         </div>
         {/* layered gradients */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/30 to-black/5" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
 
         {/* CONTENT */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 pt-28 pb-32 sm:pb-36">
@@ -133,7 +145,7 @@ export default function Home() {
                 <span className="relative z-10 text-[#ff3c3c]">Trusted</span>
                 <span className="absolute bottom-1 left-0 right-0 h-[3px] bg-[#C20000]/60 rounded" />
               </span>
-              <br />T-Shirt Manufacturer
+              <br />Uniform Manufacturer
             </h1>
 
             {/* sub */}
@@ -166,7 +178,7 @@ export default function Home() {
               <a href="https://wa.me/919979207802" target="_blank" rel="noreferrer"
                 className="hidden sm:flex items-center gap-1.5 bg-[#25D366]/90 hover:bg-[#25D366] text-white font-bold tracking-wider px-5 py-3 rounded-sm text-xs uppercase transition-all cursor-pointer">
                 <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 0C5.37 0 0 5.37 0 12c0 2.12.55 4.17 1.6 6L0 24l6.2-1.6A11.95 11.95 0 0012 24c6.63 0 12-5.37 12-12S18.63 0 12 0zM12 22c-1.9 0-3.74-.5-5.36-1.44l-.38-.22-3.68.95.98-3.58-.25-.39A9.93 9.93 0 012 12c0-5.52 4.48-10 10-10s10 4.48 10 10-4.48 10-10 10zm5.27-7.73c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.64.15-.19.29-.74.94-.91 1.13-.17.19-.34.21-.63.06-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49h-.55c-.19 0-.48.07-.74.36-.26.29-1 1-1 2.43s1.03 2.82 1.17 3.01c.14.19 2.03 3.1 4.92 4.35.69.3 1.23.48 1.65.62.69.22 1.32.19 1.82.12.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.26-.19-.55-.34z"/>
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 2.12.55 4.17 1.6 6L0 24l6.2-1.6A11.95 11.95 0 0012 24c6.63 0 12-5.37 12-12S18.63 0 12 0zM12 22c-1.9 0-3.74-.5-5.36-1.44l-.38-.22-3.68.95.98-3.58-.25-.39A9.93 9.93 0 012 12c0-5.52 4.48-10 10-10s10 4.48 10 10-4.48 10-10 10zm5.27-7.73c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.64.15-.19.29-.74.94-.91 1.13-.17.19-.34.21-.63.06-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49h-.55c-.19 0-.48.07-.74.36-.26.29-1 1-1 2.43s1.03 2.82 1.17 3.01c.14.19 2.03 3.1 4.92 4.35.69.3 1.23.48 1.65.62.69.22 1.32.19 1.82.12.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.26-.19-.55-.34z" />
                 </svg>
                 WhatsApp
               </a>
@@ -195,7 +207,7 @@ export default function Home() {
         <a href="https://wa.me/919979207802" target="_blank" rel="noreferrer"
           className="sm:hidden absolute top-20 right-4 z-30 flex items-center gap-1.5 bg-[#25D366] text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-lg">
           <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 0C5.37 0 0 5.37 0 12c0 2.12.55 4.17 1.6 6L0 24l6.2-1.6A11.95 11.95 0 0012 24c6.63 0 12-5.37 12-12S18.63 0 12 0zM12 22c-1.9 0-3.74-.5-5.36-1.44l-.38-.22-3.68.95.98-3.58-.25-.39A9.93 9.93 0 012 12c0-5.52 4.48-10 10-10s10 4.48 10 10-4.48 10-10 10zm5.27-7.73c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.64.15-.19.29-.74.94-.91 1.13-.17.19-.34.21-.63.06-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49h-.55c-.19 0-.48.07-.74.36-.26.29-1 1-1 2.43s1.03 2.82 1.17 3.01c.14.19 2.03 3.1 4.92 4.35.69.3 1.23.48 1.65.62.69.22 1.32.19 1.82.12.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.26-.19-.55-.34z"/>
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 2.12.55 4.17 1.6 6L0 24l6.2-1.6A11.95 11.95 0 0012 24c6.63 0 12-5.37 12-12S18.63 0 12 0zM12 22c-1.9 0-3.74-.5-5.36-1.44l-.38-.22-3.68.95.98-3.58-.25-.39A9.93 9.93 0 012 12c0-5.52 4.48-10 10-10s10 4.48 10 10-4.48 10-10 10zm5.27-7.73c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.64.15-.19.29-.74.94-.91 1.13-.17.19-.34.21-.63.06-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49h-.55c-.19 0-.48.07-.74.36-.26.29-1 1-1 2.43s1.03 2.82 1.17 3.01c.14.19 2.03 3.1 4.92 4.35.69.3 1.23.48 1.65.62.69.22 1.32.19 1.82.12.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.26-.19-.55-.34z" />
           </svg>
           WhatsApp
         </a>
@@ -209,12 +221,12 @@ export default function Home() {
         <div className="flex animate-marquee whitespace-nowrap gap-0">
           {[...Array(3)].map((_, i) => (
             <div key={i} className="flex shrink-0 items-center gap-8 px-8">
-              {["Polo T-Shirts", "Dry-Fit Jerseys", "Corporate Uniforms", "Cotton Round Necks",
-                "Sublimation Printing", "Embroidery Branding", "Bulk Orders Welcome", "PAN India Delivery"].map(t => (
-                <span key={t} className="flex items-center gap-2 text-white/90 text-[11px] font-bold uppercase tracking-[0.15em]">
-                  <span className="w-1 h-1 bg-white/50 rounded-full" />{t}
-                </span>
-              ))}
+              {["Polo T-Shirt", "Dry-Fit Jersey", "Corporate Uniform", "Cotton Round Neck",
+                "Sublimation Printing", "Embroidery Branding", "Bulk Order Welcome", "PAN India Delivery"].map(t => (
+                  <span key={t} className="flex items-center gap-2 text-white/90 text-[11px] font-bold uppercase tracking-[0.15em]">
+                    <span className="w-1 h-1 bg-white/50 rounded-full" />{t}
+                  </span>
+                ))}
             </div>
           ))}
         </div>
@@ -315,17 +327,27 @@ export default function Home() {
             </h2>
             <div className="w-12 h-[3px] bg-[#C20000] mt-1" />
           </div>
-          <button onClick={() => nav("/products")}
-            className="self-start sm:self-auto inline-flex items-center gap-1.5 border border-zinc-300 hover:border-[#C20000] text-zinc-600 hover:text-[#C20000] text-xs font-bold uppercase tracking-widest px-5 py-2.5 rounded-sm transition-colors cursor-pointer shrink-0">
-            View All <ArrowRight size={12} />
-          </button>
+          <div className="flex items-center gap-3 self-start sm:self-auto">
+            <div className="hidden sm:flex items-center gap-2">
+              <button onClick={() => scrollSlider("left")} className="w-10 h-10 rounded-full border border-zinc-200 flex items-center justify-center text-zinc-600 hover:border-[#C20000] hover:text-[#C20000] transition-colors cursor-pointer bg-zinc-50 hover:bg-white shadow-sm">
+                <ChevronLeft size={18} />
+              </button>
+              <button onClick={() => scrollSlider("right")} className="w-10 h-10 rounded-full border border-zinc-200 flex items-center justify-center text-zinc-600 hover:border-[#C20000] hover:text-[#C20000] transition-colors cursor-pointer bg-zinc-50 hover:bg-white shadow-sm">
+                <ChevronRight size={18} />
+              </button>
+            </div>
+            <button onClick={() => nav("/products")}
+              className="inline-flex items-center gap-1.5 border border-zinc-300 hover:border-[#C20000] text-zinc-600 hover:text-[#C20000] text-xs font-bold uppercase tracking-widest px-5 py-2.5 rounded-sm transition-colors cursor-pointer shrink-0">
+              View All <ArrowRight size={12} />
+            </button>
+          </div>
         </div>
 
-        <div className={`${fadeUp(sec4.visible)} grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-5`}
+        <div ref={sliderRef} className={`${fadeUp(sec4.visible)} flex overflow-x-auto snap-x snap-mandatory gap-4 sm:gap-5 pb-8 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]`}
           style={{ transitionDelay: "100ms" }}>
           {bestSellers.map((s, i) => (
             <div key={s.id}
-              className="group bg-white border border-zinc-100 rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:border-zinc-200 transition-all duration-300 flex flex-col"
+              className="shrink-0 snap-start w-[220px] sm:w-[240px] md:w-[260px] group bg-white border border-zinc-100 rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:border-zinc-200 transition-all duration-300 flex flex-col"
               style={{ transitionDelay: `${i * 60}ms` }}>
 
               {/* image zone */}
@@ -417,20 +439,7 @@ export default function Home() {
       ══════════════════════════════════════════════════ */}
       <section ref={sec6.ref} className="w-full py-16 md:py-24 space-y-16 md:space-y-24">
 
-        {/* Trusted by */}
-        <div className={`${fadeUp(sec6.visible)} max-w-7xl mx-auto px-4 sm:px-6 md:px-10 text-center space-y-6`}>
-          <p className="text-[10px] text-zinc-400 font-bold uppercase tracking-[0.25em]">Trusted by Brands Across India</p>
-          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 md:gap-14">
-            {clientLogos.map(l => (
-              <span key={l.name}
-                className={`${l.cls} opacity-60 hover:opacity-100 hover:scale-105 transition-all duration-200 cursor-default select-none`}>
-                {l.name}
-              </span>
-            ))}
-          </div>
-          {/* divider */}
-          <div className="max-w-7xl mx-auto mt-2 h-px bg-gradient-to-r from-transparent via-zinc-200 to-transparent" />
-        </div>
+
 
         {/* CTA CARD */}
         <div className={`${fadeUp(sec6.visible)} max-w-7xl mx-auto px-4 sm:px-6 md:px-10`}

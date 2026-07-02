@@ -35,57 +35,9 @@ const COLLECTION_COLORS = ["#C20000", "#003b71", "#10B981", "#7C3AED", "#C026D3"
 export default function Catalogue() {
   const router = useRouter();
   const { openInquiry } = useInquiry();
-  const [downloading, setDownloading] = useState(false);
-  const [downloadSuccess, setDownloadSuccess] = useState(false);
-
   const s2 = useInView();
   const s3 = useInView();
   const s4 = useInView();
-
-  const handleDownload = () => {
-    setDownloading(true);
-    setTimeout(() => {
-      setDownloading(false);
-      setDownloadSuccess(true);
-      const blob = new Blob([
-        `==================================================\n`,
-        `         KRISHNA INTERNATIONAL APPAREL CATALOGUE  \n`,
-        `==================================================\n`,
-        `Premium T-shirt Manufacturing Facility in India\n\n`,
-        `Address: 18, Senkhunj Society, Nr. Technical School,\n`,
-        `         Highway Road, Kalol - 382721, Gujarat, India\n`,
-        `Phone:   +91 99792 07802 | +91 72039 50369\n`,
-        `Email:   info@krishnaint.co.in\n`,
-        `Web:     www.krishnaint.co.in\n\n`,
-        `--------------------------------------------------\n`,
-        `                 1. POLO T-SHIRTS                 \n`,
-        `--------------------------------------------------\n`,
-        `- Code 2007: Premium Pique Cotton (220 GSM)\n`,
-        `- Code 2006: Poly Cotton Pique Polo (220 GSM)\n`,
-        `- Code 2003: Dot Knit Polo (200 GSM)\n\n`,
-        `--------------------------------------------------\n`,
-        `                 2. SPORTSWEAR & ACTIVEWEAR        \n`,
-        `--------------------------------------------------\n`,
-        `- Code 1003: Active Crew Neck Dri-Fit (160 GSM)\n`,
-        `- Code 1005: Dot Knit Round Neck (160 GSM)\n`,
-        `- Code 1006: Football Knit Round Neck (180 GSM)\n\n`,
-        `--------------------------------------------------\n`,
-        `                 3. CUSTOM PRINTING SPECS          \n`,
-        `--------------------------------------------------\n`,
-        `- Multi-Color screen plastisol printed lines\n`,
-        `- Raised computer-guided Tajima brand Embroidery\n`,
-        `- Full-coverage dye-sublimation ink fusing\n\n`,
-        `Ready for bulk orders. MOQ: 50 pieces.\n`,
-        `WhatsApp: https://wa.me/919979207802\n`,
-        `==================================================\n`,
-      ], { type: "text/plain;charset=utf-8" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url; a.download = "Krishna-International-Catalogue.txt";
-      document.body.appendChild(a); a.click();
-      document.body.removeChild(a); URL.revokeObjectURL(url);
-    }, 1500);
-  };
 
   return (
     <div className="w-full bg-white overflow-x-hidden">
@@ -173,23 +125,18 @@ export default function Catalogue() {
 
             {/* right — CTA */}
             <div className="md:col-span-4 bg-zinc-900 flex flex-col items-center justify-center gap-4 p-7 sm:p-9">
-              <button
-                onClick={handleDownload}
-                disabled={downloading}
-                className="w-full flex items-center justify-center gap-2 bg-[#C20000] hover:bg-white text-white hover:text-zinc-950 text-xs font-bold tracking-widest uppercase py-3.5 rounded-lg shadow-md transition-all cursor-pointer disabled:opacity-50"
+              <a
+                href="/krishna-catalogue.pdf"
+                target="_blank"
+                rel="noreferrer"
+                className="w-full flex items-center justify-center gap-2 bg-[#C20000] hover:bg-white text-white hover:text-zinc-950 text-xs font-bold tracking-widest uppercase py-3.5 rounded-lg shadow-md transition-all cursor-pointer"
               >
-                <Download size={14} className={downloading ? "animate-bounce" : ""} />
-                {downloading ? "Generating…" : "Download Catalogue"}
-              </button>
+                <Download size={14} />
+                Download Catalogue
+              </a>
               <p className="text-[10px] text-zinc-500 font-mono text-center">
-                TXT FORMAT · 92 KB · FREE ACCESS
+                PDF FORMAT · FREE ACCESS
               </p>
-              {downloadSuccess && (
-                <div className="w-full bg-emerald-950/60 border border-emerald-800 px-3 py-2.5 rounded-lg text-emerald-400 text-[10px] font-medium flex items-center gap-2">
-                  <CheckCircle size={13} className="shrink-0" />
-                  Download started! Check your downloads folder.
-                </div>
-              )}
 
               <a
                 href="https://wa.me/919979207802"
@@ -204,76 +151,6 @@ export default function Catalogue() {
         </div>
       </section>
 
-
-      {/* ══════════════════════════════
-          3. COLLECTIONS GRID
-      ══════════════════════════════ */}
-      <section ref={s3.ref} className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 pb-14 md:pb-20">
-        <div className={`${fadeUp(s3.visible)} text-center space-y-2 mb-10 md:mb-14`}>
-          <p className="text-[#C20000] font-mono text-[11px] font-bold uppercase tracking-[0.2em]">
-            Digital Portfolios
-          </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tight text-zinc-950">
-            Selected Digital Collections
-          </h2>
-          <div className="w-12 h-[3px] bg-[#C20000] mx-auto mt-3" />
-        </div>
-
-        {/* 2 cols mobile → 3 sm → 5 lg */}
-        <div className={`${fadeUp(s3.visible)} grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-5`}
-          style={{ transitionDelay: "100ms" }}>
-          {cataloguesList.map((cat, idx) => (
-            <div
-              key={cat.title}
-              className="group bg-white border border-zinc-100 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
-            >
-              {/* mockup */}
-              <div className="relative aspect-square bg-zinc-50 flex items-center justify-center p-4 overflow-hidden">
-                <TShirtMockup
-                  style={idx % 2 === 0 ? "polo" : "round"}
-                  mainColor={COLLECTION_COLORS[idx] ?? "#C20000"}
-                  hasLogo
-                  className="w-[80%] max-w-[120px]"
-                />
-                {/* badge */}
-                <span className="absolute top-2 left-2 bg-[#C20000] text-[8px] sm:text-[9px] text-white font-mono font-bold px-1.5 py-0.5 rounded-sm tracking-wider">
-                  {cat.itemCount} Designs
-                </span>
-                {/* hover overlay */}
-                <div className="absolute inset-0 bg-zinc-950/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <span className="text-white text-[10px] font-black uppercase tracking-wider">View Range</span>
-                </div>
-              </div>
-
-              {/* info */}
-              <div className="flex flex-col flex-1 p-3 sm:p-4 gap-2">
-                <span className="text-[8px] sm:text-[9px] text-zinc-400 font-bold uppercase tracking-widest leading-none">
-                  Collection Range
-                </span>
-                <h3 className="font-extrabold text-zinc-800 text-[10px] sm:text-xs uppercase tracking-wide leading-snug line-clamp-2 flex-1">
-                  {cat.title}
-                </h3>
-                <p className="text-zinc-500 text-[9px] sm:text-[10px]">{cat.category}</p>
-
-                <div className="pt-2 border-t border-zinc-50 flex items-center justify-between gap-2 mt-auto">
-                  <button
-                    onClick={() => { router.push("/products"); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-                    className="inline-flex items-center gap-1 text-[10px] font-bold text-zinc-600 hover:text-[#C20000] transition-colors uppercase cursor-pointer"
-                  >
-                    View <ArrowRight size={9} />
-                  </button>
-                  <button
-                    onClick={() => openInquiry()}
-                    className="text-[10px] font-bold text-[#C20000] hover:underline uppercase cursor-pointer"
-                  >
-                    Quote
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
 
 
       {/* ══════════════════════════════

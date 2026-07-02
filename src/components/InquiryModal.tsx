@@ -18,7 +18,7 @@ export const InquiryModal: React.FC = () => {
     company:  "",
     quantity: "100",
     fabric:   "Cotton",
-    category: "Polo T-Shirts",
+    category: "Polo T-Shirt",
     notes:    "",
   });
 
@@ -28,7 +28,7 @@ export const InquiryModal: React.FC = () => {
   useEffect(() => {
     setFormData(prev => ({
       ...prev,
-      category: selectedProduct?.category ?? "Polo T-Shirts",
+      category: selectedProduct?.category ?? "Polo T-Shirt",
       notes: selectedProduct
         ? `Inquiry for Code: ${selectedProduct.code} — ${selectedProduct.name}`
         : "",
@@ -187,11 +187,11 @@ export const InquiryModal: React.FC = () => {
                 <label className={LABEL}>Product Category</label>
                 <select name="category" value={formData.category} onChange={handleChange}
                   className={INPUT + " cursor-pointer"}>
-                  <option value="Polo T-Shirts">Polo T-Shirts</option>
-                  <option value="Sportswear">Sportswear / Jerseys</option>
+                  <option value="Polo T-Shirt">Polo T-Shirt</option>
+                  <option value="Sportswear">Sportswear / Jersey</option>
                   <option value="Cotton Wear">Cotton Wear</option>
                   <option value="Sublimation">Sublimation Wear</option>
-                  <option value="Corporate Uniforms">Corporate Uniforms</option>
+                  <option value="Corporate Uniform">Corporate Uniform</option>
                 </select>
               </div>
 

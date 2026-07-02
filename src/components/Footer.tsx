@@ -132,7 +132,7 @@ export const Footer: React.FC = () => {
                 href="/products"
                 className="hover:text-[#C20000] transition"
               >
-                Polo T-Shirts
+                Polo T-Shirt
               </Link>
             </li>
 
@@ -168,7 +168,7 @@ export const Footer: React.FC = () => {
                 href="/products"
                 className="hover:text-[#C20000] transition"
               >
-                Corporate Uniforms
+                Corporate Uniform
               </Link>
             </li>
 
@@ -177,7 +177,7 @@ export const Footer: React.FC = () => {
                 href="/products"
                 className="hover:text-[#C20000] transition"
               >
-                Dry Fit T-Shirts
+                Dry-Fit T-Shirt
               </Link>
             </li>
           </ul>

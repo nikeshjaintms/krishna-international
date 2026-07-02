@@ -10,6 +10,15 @@ export interface Product {
   reviewsCount: number;
   imageUrl: string;
   description: string;
+  features?: string[];
+  idealUsage?: string[];
+  sizeChart?: string;
+  colors?: { name: string; hex: string; imageUrl?: string }[];
+  blend?: string;
+  finish?: string;
+  weave?: string;
+  gender?: string[];
+  catalogPdf?: string;
 }
 
 export interface StatItem {

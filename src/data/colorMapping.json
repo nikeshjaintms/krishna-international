@@ -1,0 +1,612 @@
+{
+  "1001": [
+    {
+      "name": "White",
+      "hex": "#ffffff",
+      "imageUrl": "/images/Plain-Polyester-Round-Neck.jpg"
+    },
+    {
+      "name": "Black",
+      "hex": "#111111",
+      "imageUrl": "/images/Plain-Polyester-Round-Neck1.png"
+    },
+    {
+      "name": "Navy Blue",
+      "hex": "#1a237e",
+      "imageUrl": "/images/Plain-Polyester-Round-Neck2.png"
+    },
+    {
+      "name": "Maroon",
+      "hex": "#800000",
+      "imageUrl": "/images/Plain-Polyester-Round-Neck4.png"
+    },
+    {
+      "name": "Grey",
+      "hex": "#9e9e9e",
+      "imageUrl": "/images/Plain-Polyester-Round-Neck5.png"
+    }
+  ],
+  "1002": [
+    {
+      "name": "Red",
+      "hex": "#c62828",
+      "imageUrl": "/images/Softy-Material-Round-Neck.jpg"
+    },
+    {
+      "name": "Black",
+      "hex": "#111111",
+      "imageUrl": "/images/sm1 (1).png"
+    },
+    {
+      "name": "Navy Blue",
+      "hex": "#1a237e",
+      "imageUrl": "/images/sm1 (2).png"
+    },
+    {
+      "name": "White",
+      "hex": "#ffffff",
+      "imageUrl": "/images/sm3.png"
+    },
+    {
+      "name": "Grey",
+      "hex": "#9e9e9e",
+      "imageUrl": "/images/sm4.png"
+    }
+  ],
+  "1003": [
+    {
+      "name": "Black",
+      "hex": "#111111",
+      "imageUrl": "/images/Dry-fit Round-Neck.jpg"
+    },
+    {
+      "name": "Grey",
+      "hex": "#9e9e9e",
+      "imageUrl": "/images/Dri-Fit-T-Shirt.png"
+    },
+    {
+      "name": "Dark Grey",
+      "hex": "#424242",
+      "imageUrl": "/images/df.png"
+    },
+    {
+      "name": "White",
+      "hex": "#ffffff",
+      "imageUrl": "/images/df1.png"
+    },
+    {
+      "name": "Navy Blue",
+      "hex": "#1a237e",
+      "imageUrl": "/images/df2.png"
+    },
+    {
+      "name": "Maroon",
+      "hex": "#800000",
+      "imageUrl": "/images/df4.png"
+    }
+  ],
+  "1004": [
+    {
+      "name": "Maroon",
+      "hex": "#800000",
+      "imageUrl": "/images/Rise Knit Round Neck.jpg"
+    }
+  ],
+  "1005": [
+    {
+      "name": "Navy Blue",
+      "hex": "#1a237e",
+      "imageUrl": "/images/Dot-Knit-Round-Neck.jpg"
+    },
+    {
+      "name": "Red",
+      "hex": "#c62828",
+      "imageUrl": "/images/Dot-Knit-Round-Neck1.png"
+    },
+    {
+      "name": "White",
+      "hex": "#ffffff",
+      "imageUrl": "/images/Dot-Knit-Round-Neck2.png"
+    },
+    {
+      "name": "Black",
+      "hex": "#111111",
+      "imageUrl": "/images/Dot-Knit-Round-Neck4.png"
+    }
+  ],
+  "1006": [
+    {
+      "name": "Navy Blue",
+      "hex": "#1a237e",
+      "imageUrl": "/images/Football-Knit-Round-Neck.jpg"
+    },
+    {
+      "name": "Maroon",
+      "hex": "#800000",
+      "imageUrl": "/images/f3.png"
+    },
+    {
+      "name": "Grey",
+      "hex": "#9e9e9e",
+      "imageUrl": "/images/f4.png"
+    }
+  ],
+  "1007": [
+    {
+      "name": "Red",
+      "hex": "#c62828",
+      "imageUrl": "/images/Cotton-Round-Neck.jpg"
+    },
+    {
+      "name": "Navy Blue",
+      "hex": "#1a237e",
+      "imageUrl": "/images/cr1.png"
+    },
+    {
+      "name": "Dark Grey",
+      "hex": "#424242",
+      "imageUrl": "/images/cr2.png"
+    },
+    {
+      "name": "Maroon",
+      "hex": "#800000",
+      "imageUrl": "/images/cr3.png"
+    }
+  ],
+  "1008": [
+    {
+      "name": "Yellow",
+      "hex": "#fbc02d",
+      "imageUrl": "/images/Polyester-Cotton-Round-Neck.jpg"
+    },
+    {
+      "name": "White",
+      "hex": "#ffffff",
+      "imageUrl": "/images/pc1 (2).png"
+    },
+    {
+      "name": "Navy Blue",
+      "hex": "#1a237e",
+      "imageUrl": "/images/pc1 (3).png"
+    },
+    {
+      "name": "Maroon",
+      "hex": "#800000",
+      "imageUrl": "/images/pc1 (4).png"
+    },
+    {
+      "name": "Black",
+      "hex": "#111111",
+      "imageUrl": "/images/pc1 (5).png"
+    },
+    {
+      "name": "Red",
+      "hex": "#c62828",
+      "imageUrl": "/images/pc5.png"
+    }
+  ],
+  "2001": [
+    {
+      "name": "Light Blue",
+      "hex": "#add8e6",
+      "imageUrl": "/images/Dry-Fit-Polo.jpg"
+    },
+    {
+      "name": "Maroon",
+      "hex": "#800000",
+      "imageUrl": "/images/Dry-Fit-Polo1.png"
+    },
+    {
+      "name": "Dark Grey",
+      "hex": "#424242",
+      "imageUrl": "/images/Dry-Fit-Polo2.png"
+    },
+    {
+      "name": "White",
+      "hex": "#ffffff",
+      "imageUrl": "/images/Dry-Fit-Polo3.png"
+    },
+    {
+      "name": "Black",
+      "hex": "#111111",
+      "imageUrl": "/images/Dry-Fit-Polo4.png"
+    }
+  ],
+  "2002": [
+    {
+      "name": "Black",
+      "hex": "#111111",
+      "imageUrl": "/images/Rise-Knit-Polo.jpg"
+    },
+    {
+      "name": "Navy Blue",
+      "hex": "#1a237e",
+      "imageUrl": "/images/rk1.png"
+    },
+    {
+      "name": "Maroon",
+      "hex": "#800000",
+      "imageUrl": "/images/rk2.png"
+    },
+    {
+      "name": "White",
+      "hex": "#ffffff",
+      "imageUrl": "/images/rk3.png"
+    },
+    {
+      "name": "Grey",
+      "hex": "#9e9e9e",
+      "imageUrl": "/images/rk4.png"
+    }
+  ],
+  "2003": [
+    {
+      "name": "Yellow",
+      "hex": "#fbc02d",
+      "imageUrl": "/images/Dot-Knit-Polo.jpg"
+    },
+    {
+      "name": "Navy Blue",
+      "hex": "#1a237e",
+      "imageUrl": "/images/dot-knit-polo.png"
+    },
+    {
+      "name": "Black",
+      "hex": "#111111",
+      "imageUrl": "/images/dkp1 (1).png"
+    },
+    {
+      "name": "Dark Grey",
+      "hex": "#424242",
+      "imageUrl": "/images/dkp1 (2).png"
+    },
+    {
+      "name": "Grey",
+      "hex": "#9e9e9e",
+      "imageUrl": "/images/dkp1 (3).png"
+    },
+    {
+      "name": "Maroon",
+      "hex": "#800000",
+      "imageUrl": "/images/dkp1 (4).png"
+    }
+  ],
+  "2004": [
+    {
+      "name": "Navy Blue",
+      "hex": "#1a237e",
+      "imageUrl": "/images/Spun-Pique-Polo.jpg"
+    },
+    {
+      "name": "Black",
+      "hex": "#111111",
+      "imageUrl": "/images/sp1.png"
+    },
+    {
+      "name": "Grey",
+      "hex": "#9e9e9e",
+      "imageUrl": "/images/sp2.png"
+    },
+    {
+      "name": "White",
+      "hex": "#ffffff",
+      "imageUrl": "/images/sp3.png"
+    },
+    {
+      "name": "Red",
+      "hex": "#c62828",
+      "imageUrl": "/images/sp4.png"
+    }
+  ],
+  "2005": [
+    {
+      "name": "Black",
+      "hex": "#111111",
+      "imageUrl": "/images/Polo-Knit-Materia.png"
+    },
+    {
+      "name": "Grey",
+      "hex": "#9e9e9e",
+      "imageUrl": "/images/Polo-Knit-Materia1.png"
+    },
+    {
+      "name": "Red",
+      "hex": "#c62828",
+      "imageUrl": "/images/Polo-Knit-Materia2.png"
+    },
+    {
+      "name": "Navy Blue",
+      "hex": "#1a237e",
+      "imageUrl": "/images/Polo-Knit-Materia3.png"
+    },
+    {
+      "name": "White",
+      "hex": "#ffffff",
+      "imageUrl": "/images/Polo-Knit-Materia4.png"
+    }
+  ],
+  "2006": [
+    {
+      "name": "Red",
+      "hex": "#c62828",
+      "imageUrl": "/images/Poly-Cotton Pique-Polo.png"
+    },
+    {
+      "name": "Grey",
+      "hex": "#9e9e9e",
+      "imageUrl": "/images/pc1 (1).png"
+    }
+  ],
+  "2007": [
+    {
+      "name": "Light Blue",
+      "hex": "#add8e6",
+      "imageUrl": "/images/Cotton-Pique-Polo.jpg"
+    },
+    {
+      "name": "White",
+      "hex": "#ffffff",
+      "imageUrl": "/images/cp1.png"
+    },
+    {
+      "name": "Black",
+      "hex": "#111111",
+      "imageUrl": "/images/cp2.png"
+    },
+    {
+      "name": "Grey",
+      "hex": "#9e9e9e",
+      "imageUrl": "/images/cp3.png"
+    },
+    {
+      "name": "Maroon",
+      "hex": "#800000",
+      "imageUrl": "/images/cp4.png"
+    }
+  ],
+  "2008": [
+    {
+      "name": "Black",
+      "hex": "#111111",
+      "imageUrl": "/images/Inside-Cotton-Outside-Dry-Fit Polo.png"
+    },
+    {
+      "name": "White",
+      "hex": "#ffffff",
+      "imageUrl": "/images/ic1.png"
+    },
+    {
+      "name": "Light Blue",
+      "hex": "#add8e6",
+      "imageUrl": "/images/ic2.png"
+    },
+    {
+      "name": "Red",
+      "hex": "#c62828",
+      "imageUrl": "/images/ic3.png"
+    },
+    {
+      "name": "Grey",
+      "hex": "#9e9e9e",
+      "imageUrl": "/images/ic4.png"
+    }
+  ],
+  "2009": [
+    {
+      "name": "White",
+      "hex": "#ffffff",
+      "imageUrl": "/images/sublimation-polo-tshirt.png"
+    },
+    {
+      "name": "Black",
+      "hex": "#111111",
+      "imageUrl": "/images/s1 (1).png"
+    },
+    {
+      "name": "Red",
+      "hex": "#c62828",
+      "imageUrl": "/images/s1 (2).png"
+    },
+    {
+      "name": "Grey",
+      "hex": "#9e9e9e",
+      "imageUrl": "/images/s1 (3).png"
+    },
+    {
+      "name": "Orange",
+      "hex": "#ef6c00",
+      "imageUrl": "/images/s1(4).png"
+    }
+  ],
+  "3001": [
+    {
+      "name": "Navy Blue",
+      "hex": "#1a237e",
+      "imageUrl": "/images/Corporate-Uniform.png"
+    },
+    {
+      "name": "Light Blue",
+      "hex": "#add8e6",
+      "imageUrl": "/images/Corporate-Uniform  (1).png"
+    },
+    {
+      "name": "Grey",
+      "hex": "#9e9e9e",
+      "imageUrl": "/images/Corporate-Uniform  (5).png"
+    },
+    {
+      "name": "Maroon",
+      "hex": "#800000",
+      "imageUrl": "/images/cu1 (2).png"
+    },
+    {
+      "name": "Black",
+      "hex": "#111111",
+      "imageUrl": "/images/cu1(3).png"
+    },
+    {
+      "name": "White",
+      "hex": "#ffffff",
+      "imageUrl": "/images/cu1(4).png"
+    },
+    {
+      "name": "Dark Grey",
+      "hex": "#424242",
+      "imageUrl": "/images/cu1(5).png"
+    }
+  ],
+  "3002": [
+    {
+      "name": "Light Blue",
+      "hex": "#add8e6",
+      "imageUrl": "/images/Pant-Shirt-Uniform.png"
+    },
+    {
+      "name": "White",
+      "hex": "#ffffff",
+      "imageUrl": "/images/PS1.png"
+    },
+    {
+      "name": "Maroon",
+      "hex": "#800000",
+      "imageUrl": "/images/PS2.png"
+    },
+    {
+      "name": "Black",
+      "hex": "#111111",
+      "imageUrl": "/images/PS3.png"
+    },
+    {
+      "name": "Grey",
+      "hex": "#9e9e9e",
+      "imageUrl": "/images/PS4.png"
+    }
+  ],
+  "3003": [
+    {
+      "name": "Navy Blue",
+      "hex": "#1a237e",
+      "imageUrl": "/images/Blazer.png"
+    },
+    {
+      "name": "White",
+      "hex": "#ffffff",
+      "imageUrl": "/images/b2.png"
+    },
+    {
+      "name": "Light Grey",
+      "hex": "#d3d3d3",
+      "imageUrl": "/images/b3.png"
+    },
+    {
+      "name": "Dark Grey",
+      "hex": "#424242",
+      "imageUrl": "/images/b4.png"
+    },
+    {
+      "name": "Black",
+      "hex": "#111111",
+      "imageUrl": "/images/b5.png"
+    }
+  ],
+  "3004": [
+    {
+      "name": "Blue",
+      "hex": "#1565c0",
+      "imageUrl": "/images/Team-Uniform.png"
+    },
+    {
+      "name": "White",
+      "hex": "#ffffff",
+      "imageUrl": "/images/tu1 (1).png"
+    },
+    {
+      "name": "Black",
+      "hex": "#111111",
+      "imageUrl": "/images/tu1 (2).png"
+    },
+    {
+      "name": "Red",
+      "hex": "#c62828",
+      "imageUrl": "/images/tu1 (3).png"
+    },
+    {
+      "name": "Grey",
+      "hex": "#9e9e9e",
+      "imageUrl": "/images/tu1 (4).png"
+    }
+  ],
+  "3005": [
+    {
+      "name": "Black",
+      "hex": "#111111",
+      "imageUrl": "/images/Waistcoat.png"
+    },
+    {
+      "name": "Red",
+      "hex": "#c62828",
+      "imageUrl": "/images/w1.png"
+    },
+    {
+      "name": "Grey",
+      "hex": "#9e9e9e",
+      "imageUrl": "/images/w2.png"
+    },
+    {
+      "name": "Navy Blue",
+      "hex": "#1a237e",
+      "imageUrl": "/images/w3.png"
+    },
+    {
+      "name": "Light Blue",
+      "hex": "#add8e6",
+      "imageUrl": "/images/w4.png"
+    }
+  ],
+  "3006": [
+    {
+      "name": "Light Blue",
+      "hex": "#add8e6",
+      "imageUrl": "/images/Medical-Uniform.png"
+    },
+    {
+      "name": "White",
+      "hex": "#ffffff",
+      "imageUrl": "/images/medical1.png"
+    }
+  ],
+  "3007": [
+    {
+      "name": "Light Blue",
+      "hex": "#add8e6",
+      "imageUrl": "/images/Security-Uniform.png"
+    },
+    {
+      "name": "Black",
+      "hex": "#111111",
+      "imageUrl": "/images/s1.png"
+    },
+    {
+      "name": "Grey",
+      "hex": "#9e9e9e",
+      "imageUrl": "/images/s2.png"
+    }
+  ],
+  "3008": [
+    {
+      "name": "Grey",
+      "hex": "#9e9e9e",
+      "imageUrl": "/images/house-keeping.png"
+    },
+    {
+      "name": "Navy Blue",
+      "hex": "#1a237e",
+      "imageUrl": "/images/h1.png"
+    },
+    {
+      "name": "White",
+      "hex": "#ffffff",
+      "imageUrl": "/images/h2.png"
+    }
+  ]
+}

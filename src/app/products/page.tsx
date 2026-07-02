@@ -15,7 +15,7 @@ export default function ProductsPage() {
       <section className="relative w-full bg-zinc-950 min-h-[380px] sm:min-h-[420px] flex items-center overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/images/home-bg.png"
+            src="/images/home-bg1.png"
             fill priority sizes="100vw"
             alt="Krishna International Products"
             className="object-cover object-center brightness-[0.3] select-none"

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { useInquiry } from "@/providers/InquiryProvider";
 import { ProductCard } from "@/components/ProductCard";
 import { Product } from "@/types";
@@ -30,8 +30,8 @@ function FilterGroup({ title, children }: { title: string; children: React.React
 
 export function ProductCatalog({ products }: ProductCatalogProps) {
   const { openInquiry } = useInquiry();
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+
 
   /* filter state */
   const [category, setCategory]   = useState("All");
@@ -129,60 +129,6 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
         </div>
       </FilterGroup>
 
-      {/* fabric */}
-      <FilterGroup title="Fabric">
-        <div className="space-y-2">
-          {Object.entries(fabricCounts).map(([fab, count]) => (
-            <label key={fab} className="flex items-center gap-2.5 text-xs text-zinc-600 font-medium cursor-pointer select-none hover:text-zinc-900">
-              <input
-                type="checkbox"
-                checked={fabrics.includes(fab)}
-                onChange={() => setFabrics(toggle(fabrics, fab))}
-                className="w-3.5 h-3.5 rounded accent-[#C20000]"
-              />
-              <span className="flex-1">{fab}</span>
-              <span className="text-[10px] text-zinc-400">({count})</span>
-            </label>
-          ))}
-        </div>
-      </FilterGroup>
-
-      {/* GSM */}
-      <FilterGroup title="GSM Weight">
-        <div className="space-y-2">
-          {Object.entries(gsmCounts).map(([gsm, count]) => (
-            <label key={gsm} className="flex items-center gap-2.5 text-xs text-zinc-600 font-medium cursor-pointer select-none hover:text-zinc-900">
-              <input
-                type="checkbox"
-                checked={gsms.includes(gsm)}
-                onChange={() => setGsms(toggle(gsms, gsm))}
-                className="w-3.5 h-3.5 rounded accent-[#C20000]"
-              />
-              <span className="flex-1">{gsm}</span>
-              <span className="text-[10px] text-zinc-400">({count})</span>
-            </label>
-          ))}
-        </div>
-      </FilterGroup>
-
-      {/* sizes */}
-      <FilterGroup title="Size">
-        <div className="grid grid-cols-5 gap-1.5">
-          {SIZE_OPTIONS.map(s => (
-            <button
-              key={s}
-              onClick={() => setSizes(toggle(sizes, s))}
-              className={`py-1.5 text-[11px] font-mono font-bold rounded-lg transition-all cursor-pointer ${
-                sizes.includes(s)
-                  ? "bg-[#C20000] text-white shadow-sm"
-                  : "bg-zinc-50 border border-zinc-200 text-zinc-600 hover:border-zinc-900 hover:text-zinc-900"
-              }`}
-            >
-              {s}
-            </button>
-          ))}
-        </div>
-      </FilterGroup>
     </div>
   );
 
@@ -304,124 +250,12 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
               {filtered.map(p => (
-                <ProductCard key={p.id} product={p} onViewDetails={setSelectedProduct} />
+                <ProductCard key={p.id} product={p} />
               ))}
             </div>
           )}
         </main>
       </div>
-
-      {/* ══════════════════════════════════════════════════
-          PRODUCT DETAIL MODAL
-      ══════════════════════════════════════════════════ */}
-      {selectedProduct && (
-        <div
-          className="fixed inset-0 z-[1000] flex items-end sm:items-center justify-center p-0 sm:p-4 bg-zinc-950/80 backdrop-blur-sm"
-          onClick={() => setSelectedProduct(null)}
-        >
-          <div
-            className="relative bg-white w-full sm:rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[95dvh] sm:max-w-4xl animate-fadeIn"
-            onClick={e => e.stopPropagation()}
-          >
-            {/* close button */}
-            <button
-              onClick={() => setSelectedProduct(null)}
-              className="absolute top-3 right-3 z-20 p-2 bg-white/90 hover:bg-zinc-100 rounded-full shadow-sm transition-colors cursor-pointer"
-            >
-              <X size={18} className="text-zinc-700" />
-            </button>
-
-            {/* IMAGE SIDE */}
-            <div className="relative w-full md:w-[42%] shrink-0 bg-zinc-50"
-              style={{ minHeight: "clamp(220px, 45vw, 420px)" }}>
-              {selectedProduct.imageUrl ? (
-                <Image
-                  src={selectedProduct.imageUrl}
-                  alt={selectedProduct.name}
-                  fill
-                  className="object-contain object-center p-6 sm:p-8"
-                  sizes="(max-width: 768px) 100vw, 42vw"
-                />
-              ) : (
-                <div className="absolute inset-0 flex items-center justify-center text-zinc-400 text-sm">No Image</div>
-              )}
-            </div>
-
-            {/* DETAILS SIDE */}
-            <div className="flex-1 overflow-y-auto p-6 sm:p-8 md:p-10 space-y-5 bg-white">
-
-              {/* name + badges */}
-              <div className="space-y-2 pr-8">
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-black uppercase text-zinc-900 tracking-tight leading-tight">
-                  {selectedProduct.name}
-                </h2>
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="bg-zinc-900 text-white text-[10px] font-mono font-bold px-2.5 py-1 rounded-md tracking-widest">
-                    #{selectedProduct.code}
-                  </span>
-                  <span className="text-[10px] font-bold text-[#C20000] uppercase tracking-widest bg-[#C20000]/10 px-2.5 py-1 rounded-md">
-                    {selectedProduct.category}
-                  </span>
-                </div>
-              </div>
-
-              {/* stars */}
-              <div className="flex items-center gap-1">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} size={16}
-                    className={i < (selectedProduct.rating || 5) ? "text-amber-400 fill-amber-400" : "text-zinc-200 fill-zinc-200"} />
-                ))}
-                {selectedProduct.reviewsCount && (
-                  <span className="text-xs text-zinc-400 ml-1.5">({selectedProduct.reviewsCount} reviews)</span>
-                )}
-              </div>
-
-              {/* specs */}
-              <div className="bg-zinc-50 rounded-xl p-4 space-y-3">
-                <h4 className="text-[10px] font-black uppercase tracking-widest text-zinc-500">Specifications</h4>
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <p className="text-[10px] text-zinc-400 font-bold uppercase tracking-wider mb-0.5">Fabric</p>
-                    <p className="text-sm font-bold text-zinc-900">{selectedProduct.fabric}</p>
-                  </div>
-                  <div>
-                    <p className="text-[10px] text-zinc-400 font-bold uppercase tracking-wider mb-0.5">GSM</p>
-                    <p className="text-sm font-bold text-zinc-900">{selectedProduct.gsm}</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* sizes */}
-              <div className="space-y-2.5">
-                <h4 className="text-[10px] font-black uppercase tracking-widest text-zinc-500">Available Sizes</h4>
-                <div className="flex flex-wrap gap-2">
-                  {["S", "M", "L", "XL", "XXL"].map(size => {
-                    const avail = selectedProduct.sizes?.includes(size);
-                    return (
-                      <span key={size}
-                        className={`w-10 h-10 flex items-center justify-center text-xs font-bold font-mono rounded-lg ${
-                          avail
-                            ? "bg-white border-2 border-zinc-900 text-zinc-900 shadow-sm"
-                            : "border border-zinc-200 text-zinc-300 bg-zinc-50"
-                        }`}>
-                        {size}
-                      </span>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* CTA */}
-              <button
-                onClick={() => { setSelectedProduct(null); openInquiry(selectedProduct); }}
-                className="w-full bg-[#C20000] hover:bg-[#a00000] text-white font-black text-sm uppercase tracking-widest py-3.5 rounded-xl transition-all shadow-lg hover:shadow-xl cursor-pointer mt-2"
-              >
-                Add to Bulk Inquiry
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

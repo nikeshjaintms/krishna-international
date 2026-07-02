@@ -41,8 +41,8 @@ export default function About() {
 
   const stats = [
     { value: "10+",   label: "Years Experience" },
-    { value: "5000+", label: "Happy Clients" },
-    { value: "100+",  label: "Team Members" },
+    { value: "1000+", label: "Happy Clients" },
+    { value: "25+",  label: "Team Members" },
     { value: "1M+",   label: "Products Delivered" },
   ];
 

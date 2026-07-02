@@ -3,17 +3,18 @@ import Image from "next/image";
 import { Product } from "@/types";
 import { Star } from "lucide-react";
 
+import Link from "next/link";
+
 interface ProductCardProps {
   product: Product;
-  onViewDetails: (product: Product) => void;
 }
 
-export function ProductCard({ product, onViewDetails }: ProductCardProps) {
+export function ProductCard({ product }: ProductCardProps) {
   return (
     <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col h-full">
 
       {/* image zone — fluid height using aspect-ratio */}
-      <div className="relative w-full aspect-[3/4] bg-zinc-50 overflow-hidden">
+      <div className="relative w-full aspect-[3/4] bg-gray-50 overflow-hidden flex items-center justify-center">
         {product.imageUrl ? (
           <Image
             src={product.imageUrl}
@@ -39,9 +40,6 @@ export function ProductCard({ product, onViewDetails }: ProductCardProps) {
 
       {/* info */}
       <div className="flex flex-col flex-grow p-3 sm:p-4 gap-2">
-        <span className="text-[9px] text-zinc-400 font-bold uppercase tracking-widest leading-none">
-          {product.category}
-        </span>
 
         <h3 className="font-bold text-zinc-900 text-xs sm:text-sm tracking-wide leading-snug line-clamp-2">
           {product.name}
@@ -59,18 +57,21 @@ export function ProductCard({ product, onViewDetails }: ProductCardProps) {
         </div>
 
         {/* footer row */}
-        <div className="pt-2.5 border-t border-gray-100 flex items-center justify-between gap-2">
-          <span className="text-zinc-400 text-[9px] font-bold uppercase tracking-wider truncate">
-            {product.fabric}
-          </span>
-          <button
-            onClick={() => onViewDetails(product)}
-            className="shrink-0 text-[10px] font-black text-[#C20000] hover:text-zinc-900 uppercase tracking-wider cursor-pointer transition-colors"
+        <div className="pt-3 mt-1 border-t border-gray-100 flex flex-col gap-2.5">
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-zinc-500 text-[10px] font-bold uppercase tracking-wider truncate">
+              {product.fabric}
+            </span>
+          </div>
+          <Link
+            href={`/products/${product.id}`}
+            className="w-full bg-[#C20000] hover:bg-[#a00000] text-white text-[10px] font-black uppercase tracking-widest py-2.5 rounded-lg transition-colors cursor-pointer flex items-center justify-center"
           >
-            Details →
-          </button>
+            View Details
+          </Link>
         </div>
       </div>
     </div>
   );
 }
+// v1
