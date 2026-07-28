@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { Mail, Phone, MapPin, Globe, Facebook, Instagram, Linkedin, Youtube, ArrowUp } from "lucide-react";
+import { Mail, Phone, MapPin, Globe, Facebook, Instagram, ArrowUp } from "lucide-react";
 import Image from "next/image";
 
 
@@ -28,31 +28,21 @@ export const Footer: React.FC = () => {
 
           <div className="flex gap-3">
             <a
-              href="#"
+              href="https://www.facebook.com/people/Scorpion-Tees/61589031926250/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-9 h-9 rounded-md bg-zinc-800 flex items-center justify-center hover:bg-[#C20000] hover:text-white transition"
             >
               <Facebook size={16} />
             </a>
 
             <a
-              href="#"
+              href="https://www.instagram.com/scorpiontees/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-9 h-9 rounded-md bg-zinc-800 flex items-center justify-center hover:bg-[#C20000] hover:text-white transition"
             >
               <Instagram size={16} />
-            </a>
-
-            <a
-              href="#"
-              className="w-9 h-9 rounded-md bg-zinc-800 flex items-center justify-center hover:bg-[#C20000] hover:text-white transition"
-            >
-              <Linkedin size={16} />
-            </a>
-
-            <a
-              href="#"
-              className="w-9 h-9 rounded-md bg-zinc-800 flex items-center justify-center hover:bg-[#C20000] hover:text-white transition"
-            >
-              <Youtube size={16} />
             </a>
           </div>
         </div>
@@ -129,7 +119,7 @@ export const Footer: React.FC = () => {
           <ul className="flex flex-col gap-3 text-sm">
             <li>
               <Link
-                href="/products"
+                href="/products?category=Polo%20T-Shirt"
                 className="hover:text-[#C20000] transition"
               >
                 Polo T-Shirt
@@ -138,7 +128,7 @@ export const Footer: React.FC = () => {
 
             <li>
               <Link
-                href="/products"
+                href="/products?category=Sportswear"
                 className="hover:text-[#C20000] transition"
               >
                 Sportswear
@@ -147,7 +137,7 @@ export const Footer: React.FC = () => {
 
             <li>
               <Link
-                href="/products"
+                href="/products?category=Cotton%20Wear"
                 className="hover:text-[#C20000] transition"
               >
                 Cotton Wear
@@ -156,7 +146,7 @@ export const Footer: React.FC = () => {
 
             <li>
               <Link
-                href="/products"
+                href="/products?category=Sublimation"
                 className="hover:text-[#C20000] transition"
               >
                 Sublimation
@@ -165,7 +155,7 @@ export const Footer: React.FC = () => {
 
             <li>
               <Link
-                href="/products"
+                href="/products?category=Corporate%20Uniform"
                 className="hover:text-[#C20000] transition"
               >
                 Corporate Uniform
@@ -174,7 +164,7 @@ export const Footer: React.FC = () => {
 
             <li>
               <Link
-                href="/products"
+                href="/products?category=Round%20Neck%20T-Shirt"
                 className="hover:text-[#C20000] transition"
               >
                 Dry-Fit T-Shirt
@@ -295,12 +285,20 @@ export const Footer: React.FC = () => {
                 className="text-[#C20000] shrink-0"
               />
 
-              <a
-                href="mailto:info@krishnaint.co.in"
-                className="hover:text-white transition break-all"
-              >
-                info@krishnaint.co.in
-              </a>
+              <div className="flex flex-col gap-1">
+                <a
+                  href="mailto:info@krishnaint.co.in"
+                  className="hover:text-white transition break-all"
+                >
+                  info@krishnaint.co.in
+                </a>
+                <a
+                  href="mailto:krishnaintl@gmail.com"
+                  className="hover:text-white transition break-all"
+                >
+                  krishnaintl@gmail.com
+                </a>
+              </div>
             </li>
 
             <li className="flex items-center gap-3">

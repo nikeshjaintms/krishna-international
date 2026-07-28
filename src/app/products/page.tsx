@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight, BadgeCheck, Factory, Truck } from "lucide-react";
@@ -61,7 +61,9 @@ export default function ProductsPage() {
       </section>
 
       {/* ── CATALOG ── */}
-      <ProductCatalog products={products} />
+      <Suspense fallback={<div className="p-8 text-center text-sm font-medium text-zinc-500">Loading catalog...</div>}>
+        <ProductCatalog products={products} />
+      </Suspense>
 
     </div>
   );

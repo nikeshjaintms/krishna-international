@@ -503,7 +503,7 @@ export const colorMapping = {
     {
       "name": "Teal",
       "hex": "#008080",
-      "imageUrl": "/images/Team-Uniform.png?v=1782729518327"
+      "imageUrl": "/images/tu1 (1).png?v=1782729518327"
     },
     {
       "name": "Blue",

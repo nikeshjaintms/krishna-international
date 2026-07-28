@@ -104,9 +104,9 @@ export default function About() {
           </h1>
           <div className="w-16 h-1 bg-[#C20000] mt-4 mb-5" />
           <p className="text-sm sm:text-base text-zinc-300 leading-relaxed font-medium max-w-xl">
-            Krishna International is a leading T-Shirt Manufacturer in India,
-            specialising in premium quality apparel for businesses, events,
-            sports teams, schools and organisations.
+            Krishna International is a leading Uniform Manufacturer in India,
+            specialising in corporate and staff uniforms, T-shirts, and premium quality
+            apparel for businesses, events, sports teams, schools and organisations.
           </p>
         </div>
       </section>
@@ -129,8 +129,9 @@ export default function About() {
               Established with a vision to deliver the best in apparel manufacturing,
               Krishna International has grown into a trusted name in the industry.
               With state-of-the-art infrastructure, a skilled workforce and a strong
-              commitment to quality, we manufacture a wide range of T-Shirts, Polo
-              T-Shirts and Sportswear that combine comfort, durability and style.
+              commitment to quality, we manufacture a wide range of Corporate & Staff Uniforms,
+              Polo T-Shirts and Sportswear that combine comfort, durability and professional style
+              for every industry.
             </p>
 
             {/* 2 × 2 pillars */}
@@ -152,8 +153,8 @@ export default function About() {
             {/* image */}
             <div className="relative w-full rounded-t-2xl overflow-hidden shadow-xl" style={{ height: "clamp(240px, 45vw, 420px)" }}>
               <Image
-                src="/images/our-story.png"
-                alt="Krishna International Factory"
+                src="/images/cu1 (1).png"
+                alt="Krishna International Corporate Uniforms"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover object-top"
@@ -190,11 +191,12 @@ export default function About() {
             <div className={`${fadeUp(s3.visible)} lg:col-span-5 space-y-6`}>
               <p className="text-[#ff3838] font-bold text-[11px] uppercase tracking-[0.2em]">Why Choose Us</p>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight leading-tight">
-                We Deliver More<br />Than Just T-Shirts
+                We Deliver More<br />Than Just Uniforms
               </h2>
               <p className="text-zinc-400 text-sm leading-relaxed max-w-sm">
-                From fabric selection to final packaging, every step is executed
-                with precision to ensure superior quality and customer satisfaction.
+                From Fabric to Finish, We Deliver Excellence. Every step from fabric
+                selection to final packaging is executed with precision to ensure
+                superior quality and customer satisfaction.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
@@ -217,31 +219,31 @@ export default function About() {
                 {/* tall left */}
                 <div className="relative flex-1 rounded-xl overflow-hidden border border-zinc-800 min-h-[220px] sm:min-h-0">
                   <Image
-                    src="/images/about-3.png"
-                    alt="Manufacturing machinery"
+                    src="/images/cu1 (2).png"
+                    alt="Premium Corporate Uniform Manufacturing"
                     fill
                     sizes="(max-width: 640px) 100vw, 33vw"
-                    className="object-cover"
+                    className="object-cover object-top"
                   />
                 </div>
                 {/* right column — 2 stacked */}
                 <div className="flex sm:flex-col gap-3 flex-1 sm:h-full">
                   <div className="relative flex-1 rounded-xl overflow-hidden border border-zinc-800 min-h-[140px] sm:min-h-0">
                     <Image
-                      src="/images/about-2.png"
-                      alt="Quality check"
+                      src="/images/PS1.png"
+                      alt="Pant & Shirt Formal Uniforms"
                       fill
                       sizes="(max-width: 640px) 50vw, 25vw"
-                      className="object-cover"
+                      className="object-cover object-top"
                     />
                   </div>
                   <div className="relative flex-1 rounded-xl overflow-hidden border border-zinc-800 min-h-[140px] sm:min-h-0">
                     <Image
-                      src="/images/why-chooseus.png"
-                      alt="Packaging"
+                      src="/images/s1 (1).png"
+                      alt="Staff & Security Workwear Uniforms"
                       fill
                       sizes="(max-width: 640px) 50vw, 25vw"
-                      className="object-cover"
+                      className="object-cover object-top"
                     />
                   </div>
                 </div>

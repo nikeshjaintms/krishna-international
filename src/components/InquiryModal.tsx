@@ -192,6 +192,7 @@ export const InquiryModal: React.FC = () => {
                   <option value="Cotton Wear">Cotton Wear</option>
                   <option value="Sublimation">Sublimation Wear</option>
                   <option value="Corporate Uniform">Corporate Uniform</option>
+                  <option value="Staff Uniform">Staff Uniform (Hospitality, Healthcare, Security & Industrial)</option>
                 </select>
               </div>
 

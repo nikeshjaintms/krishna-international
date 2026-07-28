@@ -92,7 +92,7 @@ export default function Customization() {
               features: [
                 "Up to 15 thread colours per design",
                 "Minimum order: 50 pieces",
-                "Suitable for polo t-shirts & shirts",
+                "Suitable for corporate uniforms, polo t-shirts & shirts",
                 "Durable — survives 50+ commercial washes",
                 "3D puff embroidery available on request"
               ]
@@ -232,17 +232,22 @@ export default function Customization() {
               <div className="space-y-2">
                 <p className="text-[9px] text-zinc-500 uppercase font-mono font-bold">1. Select Base Pattern</p>
                 <div className="grid grid-cols-3 gap-1.5">
-                  {(["polo", "round", "sports"] as const).map((styleOpt) => (
+                  {[
+                    { id: "polo" as const, label: "Polo T-Shirts" },
+                    { id: "round" as const, label: "Round Neck T-Shirts" },
+                    { id: "sports" as const, label: "Sports Wear" },
+                  ].map((opt) => (
                     <button
-                      key={styleOpt}
-                      onClick={() => setActivePlaygroundStyle(styleOpt)}
-                      className={`py-1 px-1 text-[9px] font-bold uppercase rounded-xs border font-mono cursor-pointer ${
-                        activePlaygroundStyle === styleOpt
+                      key={opt.id}
+                      onClick={() => setActivePlaygroundStyle(opt.id)}
+                      className={`py-1.5 px-1 text-[9px] font-bold uppercase rounded-xs border font-mono cursor-pointer truncate ${
+                        activePlaygroundStyle === opt.id
                           ? "bg-[#C20000] border-[#C20000] text-white"
                           : "border-zinc-800 text-gray-400 hover:border-zinc-700"
                       }`}
+                      title={opt.label}
                     >
-                      {styleOpt}
+                      {opt.label}
                     </button>
                   ))}
                 </div>
@@ -297,9 +302,9 @@ export default function Customization() {
             </div>
           </div>
 
-          <div className="lg:col-span-8 flex flex-col md:flex-row items-center justify-center gap-10">
+          <div className="lg:col-span-8 flex flex-col items-center justify-center gap-6">
             {/* Interactive rendering with visual pointers */}
-            <div className="relative w-full max-w-[340px] bg-zinc-100 p-8 rounded-2xl shadow-[0_0_40px_rgba(255,255,255,0.05)] flex items-center justify-center">
+            <div className="relative w-full max-w-[360px] bg-zinc-100 p-8 rounded-2xl shadow-[0_0_40px_rgba(255,255,255,0.05)] flex flex-col items-center justify-center gap-6">
               
               {/* Foreground Mockup */}
               <div className="relative z-10 w-full drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)] transition-all duration-500">
@@ -314,43 +319,14 @@ export default function Customization() {
                   className="w-full h-full min-h-[300px]"
                 />
               </div>
-            </div>
 
-            {/* Specs sidebar table inside config center */}
-            <div className="w-full max-w-[280px] bg-zinc-900/60 p-5 rounded border border-zinc-850 space-y-4">
-              <h3 className="text-xs font-bold uppercase tracking-widest border-b border-zinc-800 pb-2">Technical CAD Specs</h3>
-              
-              <ul className="space-y-3 font-mono text-[9px] text-zinc-400">
-                <li className="flex justify-between">
-                  <span>STITCH PROFILE:</span>
-                  <span className="text-white font-bold">DOUBLE NEEDLE COLLAR</span>
-                </li>
-                <li className="flex justify-between">
-                  <span>ARM JOINTS:</span>
-                  <span className="text-white font-bold">FLATLOCK ACTIVE SEAMS</span>
-                </li>
-                <li className="flex justify-between">
-                  <span>THREAD STRENGTH:</span>
-                  <span className="text-white font-bold">120D HIGH TENSILE POLY</span>
-                </li>
-                <li className="flex justify-between">
-                  <span>COLOUR DEPTH:</span>
-                  <span className="text-white font-bold">ISO LEVEL 4 FASTNESS</span>
-                </li>
-                <li className="flex justify-between">
-                  <span>SHRINK DAMAGE:</span>
-                  <span className="text-white font-bold">LESS THAN 3% IN BIO WASH</span>
-                </li>
-              </ul>
-              
               <button
                 onClick={() => openInquiry()}
-                className="w-full py-2 bg-[#C20000] hover:bg-white text-white hover:text-black text-[10px] font-bold tracking-widest uppercase rounded-xs transition-colors cursor-pointer"
+                className="w-full py-2.5 bg-[#C20000] hover:bg-zinc-900 text-white text-[11px] font-bold tracking-widest uppercase rounded-xs transition-colors cursor-pointer shadow-md"
               >
                 Inquire Selected Config
               </button>
             </div>
-
           </div>
 
         </div>
@@ -398,10 +374,10 @@ export default function Customization() {
         <div className="w-full bg-[#C20000] text-white p-8 md:p-12 rounded-lg grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-gradient-to-r from-[#990000] to-zinc-950 shadow-xl">
           <div className="lg:col-span-8 text-left space-y-3">
             <h2 className="text-xl md:text-2xl font-black uppercase tracking-tight">
-              Ready to Customize Your T-Shirts?
+              Ready to Customize Your Uniforms?
             </h2>
             <p className="text-white/80 text-xs">
-              Take advantage of direct pricing direct from our manufacturing facility line. We hold certification from major corporate inspection houses.
+              Take advantage of direct pricing direct from our manufacturing facility line for custom uniforms and apparel. We hold certification from major corporate inspection houses.
             </p>
           </div>
           <div className="lg:col-span-4 flex flex-wrap gap-3 md:justify-end">

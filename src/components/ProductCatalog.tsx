@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useMemo, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { useInquiry } from "@/providers/InquiryProvider";
 import { ProductCard } from "@/components/ProductCard";
 import { Product } from "@/types";
@@ -33,12 +34,22 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
 
+  const searchParams = useSearchParams();
+  const initialCategory = searchParams?.get("category") || "All";
+
   /* filter state */
-  const [category, setCategory]   = useState("All");
+  const [category, setCategory]   = useState(initialCategory);
   const [fabrics,  setFabrics]    = useState<string[]>([]);
   const [gsms,     setGsms]       = useState<string[]>([]);
   const [sizes,    setSizes]       = useState<string[]>([]);
   const [query,    setQuery]       = useState("");
+
+  useEffect(() => {
+    const cat = searchParams?.get("category");
+    if (cat && cat !== category) {
+      setCategory(cat);
+    }
+  }, [searchParams]);
 
   /* derived counts */
   const categoryCounts = useMemo(() => {
@@ -70,7 +81,15 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
 
   /* filtered list */
   const filtered = useMemo(() => products.filter(p => {
-    if (category !== "All" && p.category !== category) return false;
+    if (category !== "All") {
+      if (category === "Sublimation") {
+        if (!p.name.toLowerCase().includes("sublimation") && p.category !== "Sublimation") return false;
+      } else if (category === "Cotton Wear") {
+        if (!p.fabric.toLowerCase().includes("cotton") && p.category !== "Cotton Wear") return false;
+      } else if (p.category !== category) {
+        return false;
+      }
+    }
     if (fabrics.length  && !fabrics.includes(p.fabric))  return false;
     if (gsms.length     && !gsms.includes(p.gsm))        return false;
     if (sizes.length    && !p.sizes?.some(s => sizes.includes(s))) return false;
@@ -82,7 +101,7 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
   }), [products, category, fabrics, gsms, sizes, query]);
 
   /* ── FILTER PANEL CONTENT (shared between sidebar & drawer) ── */
-  const FilterPanelContent = () => (
+  const renderFilterPanelContent = () => (
     <div className="space-y-1">
 
       {/* search */}
@@ -179,7 +198,7 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
             </div>
             {/* scrollable body */}
             <div className="flex-1 overflow-y-auto px-5 py-4">
-              <FilterPanelContent />
+              {renderFilterPanelContent()}
             </div>
             {/* footer */}
             <div className="border-t border-zinc-100 px-5 py-4 flex gap-3">
@@ -219,7 +238,7 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
                 </button>
               )}
             </div>
-            <FilterPanelContent />
+            {renderFilterPanelContent()}
           </div>
         </aside>
 

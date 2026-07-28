@@ -250,7 +250,7 @@ export default function Home() {
           {collections.map((c, i) => (
             <button
               key={c.name}
-              onClick={() => nav("/products")}
+              onClick={() => nav(`/products?category=${encodeURIComponent(c.name)}`)}
               className="group relative bg-zinc-50 hover:bg-white rounded-xl border border-zinc-100 hover:border-[#C20000]/30 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden text-center p-3 sm:p-4 flex flex-col items-center gap-3 cursor-pointer"
             >
               {/* colour accent line */}
@@ -288,8 +288,11 @@ export default function Home() {
           <div className={`${fadeUp(sec3.visible)} text-center space-y-2 mb-12 md:mb-16`}>
             <p className="text-[#ff4040] font-mono text-[11px] font-bold uppercase tracking-[0.2em]">Why Choose Us</p>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tight">
-              We Deliver More Than Just T-Shirts
+              We Deliver More Than Just Uniforms
             </h2>
+            <p className="text-zinc-400 text-sm font-medium pt-1">
+              From Fabric to Finish, We Deliver Excellence.
+            </p>
             <div className="w-12 h-[3px] bg-[#C20000] mx-auto mt-3" />
           </div>
 
@@ -458,11 +461,11 @@ export default function Home() {
                   <span className="text-[#ff4040] font-mono text-[10px] font-bold uppercase tracking-widest">Custom Apparel Ready</span>
                 </div>
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-black uppercase text-white tracking-tight leading-tight">
-                  Need Custom T-Shirts<br className="hidden sm:block" />
+                  Need Custom Uniforms<br className="hidden sm:block" />
                   <span className="text-[#ff3c3c]"> for Your Brand?</span>
                 </h2>
                 <p className="text-zinc-400 text-sm leading-relaxed max-w-lg">
-                  Crew necks for retail, cotton pique polos for corporate staff, or
+                  Corporate &amp; staff uniforms for business, cotton pique polos for office teams, or
                   moisture-wicking jerseys for sports teams — we deliver high stitch
                   counts, deep colour fastness &amp; customisable trims.
                 </p>

@@ -6,7 +6,7 @@ import React, { useEffect, useRef, useState } from "react";
 import {
   ChevronRight, MapPin, Phone, Mail,
   Send, MessageSquare, BadgeCheck, Clock,
-  Facebook, Instagram, Linkedin, Youtube,
+  Facebook, Instagram,
   Timer, Briefcase, Wrench, ShieldCheck,
   Award, Box, Truck, Smile,
 } from "lucide-react";
@@ -161,12 +161,16 @@ export default function Contact() {
           <div className="border-t border-zinc-100 px-5 sm:px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
             <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-wider">Follow us on social media</span>
             <div className="flex items-center gap-4 text-zinc-500">
-              {[Facebook, Instagram, Linkedin, Youtube].map((Icon, i) => (
-                <a key={i} href="#"
-                  className="w-8 h-8 rounded-lg bg-zinc-50 hover:bg-[#C20000] hover:text-white flex items-center justify-center transition-all">
-                  <Icon size={14} />
-                </a>
-              ))}
+              <a href="https://www.facebook.com/people/Scorpion-Tees/61589031926250/"
+                target="_blank" rel="noopener noreferrer"
+                className="w-8 h-8 rounded-lg bg-zinc-50 hover:bg-[#C20000] hover:text-white flex items-center justify-center transition-all">
+                <Facebook size={14} />
+              </a>
+              <a href="https://www.instagram.com/scorpiontees/"
+                target="_blank" rel="noopener noreferrer"
+                className="w-8 h-8 rounded-lg bg-zinc-50 hover:bg-[#C20000] hover:text-white flex items-center justify-center transition-all">
+                <Instagram size={14} />
+              </a>
             </div>
           </div>
         </div>
